@@ -19,7 +19,8 @@ export const LOKACIJA = {
 // ---------------------------------------------------------------------
 //  JEDINICE
 //  kat: indeks u KATOVI (0 = prizemlje, 1 = 1. kat, 2 = polukat, 3 = 2. kat, 4 = 3. kat)
-//  strana: "more" ili "ulica" (more = zapad, ulica = istok)
+//  strana: "more" ili "ulica" – određuje stranu balkona (more = zapad, ulica = istok)
+//  ulaz je s istoka (ulica): desno = sjever (z < 0), lijevo = jug (z > 0)
 //  tlocrt: pravokutnik u metrima unutar kuće (x: zapad -> istok, z: sjever -> jug)
 //          kuća ide od x -6.5 do 6.5 i od z -5.25 do 5.25
 //  tip: A = spavaća soba + kauč na razvlačenje, B = spavaća soba + 2 kauča, S = studio (opisi su u js/i18n-sadrzaji.js)
@@ -35,22 +36,22 @@ export const KATOVI = [
 ];
 
 export const JEDINICE = [
-  { id: 1, tip: "A", kat: 1, strana: "more",  boja: "#d9825b", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -3.5, z1: 0.875 } },
-  { id: 2, tip: "S", kat: 1, strana: "more",  boja: "#7f9a4a", osoba: 2, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.875, z1: 5.25 } },
-  { id: 3, tip: "B", kat: 2, strana: "ulica", boja: "#3f8fae", osoba: 4, m2: null, tlocrt: { x0: 0, x1: 6.5, z0: -3.5, z1: 5.25 } },
-  { id: 4, tip: "A", kat: 2, strana: "more",  boja: "#e2b04a", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 0, z0: -3.5, z1: 5.25 } },
-  { id: 5, tip: "A", kat: 3, strana: "more",  boja: "#a86a9c", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -3.5, z1: 0.875 } },
-  { id: 6, tip: "S", kat: 3, strana: "more",  boja: "#c95454", osoba: 2, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.875, z1: 5.25 } },
-  { id: 7, tip: "B", kat: 4, strana: "ulica", boja: "#4f9d8a", osoba: 4, m2: null, tlocrt: { x0: 0, x1: 6.5, z0: -3.5, z1: 5.25 } },
-  { id: 8, tip: "A", kat: 4, strana: "more",  boja: "#6c7fc4", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 0, z0: -3.5, z1: 5.25 } },
+  { id: 1, tip: "A", kat: 1, strana: "more",  boja: "#d9825b", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.9, z1: 5.25 } },
+  { id: 2, tip: "S", kat: 1, strana: "more",  boja: "#7f9a4a", osoba: 2, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -0.9 } },
+  { id: 3, tip: "B", kat: 2, strana: "ulica", boja: "#3f8fae", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -0.9 } },
+  { id: 4, tip: "A", kat: 2, strana: "more",  boja: "#e2b04a", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.9, z1: 5.25 } },
+  { id: 5, tip: "A", kat: 3, strana: "more",  boja: "#a86a9c", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -0.9 } },
+  { id: 6, tip: "S", kat: 3, strana: "more",  boja: "#c95454", osoba: 2, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.9, z1: 5.25 } },
+  { id: 7, tip: "B", kat: 4, strana: "ulica", boja: "#4f9d8a", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -0.9 } },
+  { id: 8, tip: "A", kat: 4, strana: "more",  boja: "#6c7fc4", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.9, z1: 5.25 } },
 ];
 
 // Zajednički / ostali prostori po katovima (nisu apartmani)
 export const OSTALO = [
-  { kat: 1, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
-  { kat: 2, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
-  { kat: 3, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
-  { kat: 4, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
+  { kat: 1, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -0.9, z1: 0.9 } },
+  { kat: 2, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -0.9, z1: 0.9 } },
+  { kat: 3, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -0.9, z1: 0.9 } },
+  { kat: 4, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -0.9, z1: 0.9 } },
 ];
 
 // ---------------------------------------------------------------------

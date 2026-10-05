@@ -118,24 +118,24 @@ garden.receiveShadow = true;
 scene.add(garden);
 
 // parking (istok) – šljunak među maslinama
-const parking = new THREE.Mesh(new THREE.PlaneGeometry(11, 20), new THREE.MeshStandardMaterial({ color: COL.gravel, roughness: 1 }));
+const parking = new THREE.Mesh(new THREE.PlaneGeometry(13, 11), new THREE.MeshStandardMaterial({ color: COL.gravel, roughness: 1 }));
 parking.rotation.x = -Math.PI / 2;
-parking.position.set(14.5, 0.02, 0);
+parking.position.set(15.5, 0.02, 8);
 parking.receiveShadow = true;
 scene.add(parking);
 const parkLbl = tLabel("lbl_parking", "lbl-place");
-parkLbl.position.set(15.5, 0.3, 9);
+parkLbl.position.set(15.5, 0.3, 13.5);
 scene.add(parkLbl);
 
 // automobili
-[[-6], [-1.5], [3], [7.5]].forEach(([z], i) => {
+[[13, 5.5], [18.5, 5.5], [13, 10], [18.5, 10]].forEach(([x, z], i) => {
   const car = new THREE.Group();
   const body = box(4.2, 0.8, 1.8, [0xf2f2f2, 0x4a6a8a, 0x9c3b30, 0x30343a][i]);
   body.position.y = 0.6;
   const top = box(2.3, 0.6, 1.6, 0x26323b);
   top.position.set(-0.2, 1.3, 0);
   car.add(body, top);
-  car.position.set(16.5, 0, z);
+  car.position.set(x, 0, z);
   scene.add(car);
 });
 
@@ -146,7 +146,7 @@ road.position.set(24, 0.03, 0);
 road.receiveShadow = true;
 scene.add(road);
 const streetLbl = tLabel("lbl_street", "lbl-place");
-streetLbl.position.set(23, 0.4, -28);
+streetLbl.position.set(22, 0.4, 6);
 scene.add(streetLbl);
 
 // more (zapad, ~200 m) – plavi pojas na rubu
@@ -186,7 +186,7 @@ function olive(x, z, s = 1) {
   g.position.set(x, 0, z);
   scene.add(g);
 }
-[[11, -9], [11, -3.8], [11, 1.2], [11, 6], [19.5, -8.5], [20, -2.5], [20, 3.5], [19.5, 9],
+[[11, -9], [11, -4.2], [16, -4.5], [19.5, -9], [20, 15], [10, 15], [15.8, 2.6],
  [-11, 8], [-14, -4], [-12, 13], [2, 11], [6, 12.5], [-4, -10.5], [4, -10.5]].forEach(([x, z]) => olive(x, z, 0.9 + Math.random() * 0.3));
 
 // ---------------- Kuća ----------------
@@ -227,19 +227,6 @@ for (let f = 0; f < N_FLOORS; f++) {
   g.add(shell);
   edges(shell, COL.wallEdge, 0.9);
 
-  // balkoni prema moru (zapad) na katovima, terasa na jugu u prizemlju
-  if (f > 0) {
-    const bal = box(1.6, 0.18, D - 1.5, COL.slab);
-    bal.position.set(-HX - 0.8, 0.09, 0);
-    g.add(bal);
-    const rail = new THREE.Group();
-    const railMat = { color: COL.rail };
-    const r1 = box(0.06, 1.0, D - 1.5, railMat.color); r1.position.set(-HX - 1.57, 0.68, 0); rail.add(r1);
-    const r2 = box(1.6, 1.0, 0.06, railMat.color); r2.position.set(-HX - 0.8, 0.68, (D - 1.5) / 2); rail.add(r2);
-    const r3 = r2.clone(); r3.position.z = -(D - 1.5) / 2; rail.add(r3);
-    rail.children.forEach((m) => { m.material = m.material.clone(); m.material.transparent = true; m.material.opacity = 0.85; });
-    g.add(rail);
-  }
 
   // zajednički prostori
   OSTALO.filter((o) => o.kat === f).forEach((o) => {
@@ -279,6 +266,26 @@ JEDINICE.forEach((u) => {
   lbl.element.title = `${t("unit", lang)} ${u.id}`;
   m.add(lbl);
   unitById.set(u.id, { mesh: m, label: lbl, data: u });
+
+  // balkon: prema moru (zapad) ili prema ulici (istok)
+  {
+    const side = u.strana === "ulica" ? 1 : -1;
+    const len = z1 - z0 - 1.2, cz = (z0 + z1) / 2, bx = side * (HX + 0.8);
+    const bal = box(1.6, 0.18, len, COL.slab);
+    bal.position.set(bx, 0.09, cz);
+    g.add(bal);
+    const rails = [
+      [0.06, len, bx + side * 0.77, cz],
+      [1.6, 0.06, bx, cz + len / 2],
+      [1.6, 0.06, bx, cz - len / 2],
+    ];
+    rails.forEach(([w, d, x, z]) => {
+      const r = box(w, 1.0, d, COL.rail);
+      r.material.transparent = true; r.material.opacity = 0.85;
+      r.position.set(x, 0.68, z);
+      g.add(r);
+    });
+  }
 });
 
 // krov – četverostrešni
@@ -309,41 +316,53 @@ roof.position.y = roof.userData.baseY;
 }
 house.add(roof);
 
-// ---------------- Glavni ulaz za goste: vanjsko stubište s parkirališta ----------------
+// ---------------- Glavni ulaz za goste: vanjsko stubište od ulice prema kući ----------------
+// Stubište vodi na polukat (apartmani 3 i 4); unutra se do 1 i 2 silazi, a do 5–8 penje.
+const ENTRY_LEVEL = 2;
 const entrance = new THREE.Group();
 {
-  const landY = FLOOR_H;                       // podest na razini 1. kata
-  const sx0 = HX + 0.15, sx1 = HX + 1.55;      // širina stubišta
-  const steps = 16, run = 0.3, rise = (landY + PLINTH) / steps;
-  const startZ = 1.6;                          // kreće s parkirališta prema podestu uz stubište
-  for (let s = 0; s < steps; s++) {
-    const st = box(sx1 - sx0, rise * (s + 1), run, COL.stair);
-    st.position.set((sx0 + sx1) / 2, (rise * (s + 1)) / 2, startZ - s * run);
+  const H = ENTRY_LEVEL * FLOOR_H + PLINTH;    // visina podesta
+  const steps = 22, run = 0.32, rise = H / steps, width = 1.6;
+  const lx0 = HX, lx1 = HX + 1.6;              // podest uz istočno pročelje
+  for (let s = 0; s < steps; s++) {             // s = 0 najniža (uz parkiralište)
+    const h = rise * (s + 1);
+    const st = box(run + 0.04, 0.16, width, COL.stair);
+    st.position.set(lx1 + (steps - 1 - s) * run + run / 2, h - 0.08, 0);
     entrance.add(st);
   }
-  const landZ = startZ - steps * run - 0.8;
-  const land = box(sx1 - sx0, 0.2, 1.8, COL.stair);
-  land.position.set((sx0 + sx1) / 2, landY + PLINTH - 0.1, landZ);
+  {
+    const L0 = steps * run, a0 = Math.atan2(H, L0);
+    [-1, 1].forEach((sd) => {        // bočni nosači stubišta
+      const sg = box(Math.hypot(L0, H), 0.35, 0.12, 0xcdbfae);
+      sg.position.set(lx1 + L0 / 2, H / 2 - 0.15, sd * (width / 2 + 0.06));
+      sg.rotation.z = -a0;
+      entrance.add(sg);
+    });
+  }
+  const land = box(lx1 - lx0, 0.25, width + 0.4, COL.stair);
+  land.position.set((lx0 + lx1) / 2, H - 0.125, 0);
   entrance.add(land);
-  const post = box(0.25, landY + PLINTH, 0.25, COL.stair);
-  post.position.set(sx1 - 0.15, (landY + PLINTH) / 2, landZ - 0.7);
+  const post = box(0.3, H, 0.3, COL.stair);
+  post.position.set(lx1 - 0.2, H / 2, 0);
   entrance.add(post);
-  const rail = box(0.05, 1, steps * run + 1.8, COL.rail);
-  rail.position.set(sx1, landY / 2 + 0.9, startZ - (steps * run) / 2 - 0.4);
-  rail.rotation.x = Math.atan2(landY, steps * run) * 0.75;
-  entrance.add(rail);
-  // vrata
-  const door = box(0.12, 2.1, 1.1, 0x8a4f35);
-  door.position.set(HX + 0.06, landY + PLINTH + 1.05, landZ);
+  const L = steps * run, ang = Math.atan2(H, L);
+  [-1, 1].forEach((sd) => {
+    const r = box(Math.hypot(L, H), 0.06, 0.06, COL.rail);
+    r.position.set(lx1 + L / 2, H / 2 + 0.9, sd * (width / 2));
+    r.rotation.z = -ang;
+    entrance.add(r);
+  });
+  const door = box(0.12, 2.1, 1.2, 0x8a4f35);
+  door.position.set(HX + 0.06, H + 1.05, 0);
   entrance.add(door);
-  // istaknuta staza od parkinga do stubišta
-  const path = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 1.6), new THREE.MeshStandardMaterial({ color: COL.entrance, transparent: true, opacity: 0.85 }));
+  // istaknuta staza na dnu stubišta
+  const path = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 2.4), new THREE.MeshStandardMaterial({ color: COL.entrance, transparent: true, opacity: 0.85 }));
   path.rotation.x = -Math.PI / 2;
-  path.position.set((sx0 + sx1) / 2 + 0.6, 0.04, startZ + 1);
+  path.position.set(lx1 + L + 1.1, 0.04, 0);
   entrance.add(path);
 
   const eLbl = tLabel("lbl_entrance", "lbl-entrance");
-  eLbl.position.set((sx0 + sx1) / 2 + 0.3, landY + PLINTH + 2.8, landZ);
+  eLbl.position.set(lx1 + 0.5, H + 3, 0);
   entrance.add(eLbl);
 }
 scene.add(entrance);
@@ -370,7 +389,7 @@ function applyView() {
   });
   roof.userData.targetOffset = exploded ? N_FLOORS * EXPLODE : 0;
   roof.visible = roofOn && currentView === "all";
-  entrance.visible = currentView === "all" || Number(currentView) >= 1;
+  entrance.visible = currentView === "all" || Number(currentView) >= ENTRY_LEVEL;
 
   document.querySelectorAll("[data-view]").forEach((b) => b.classList.toggle("on", b.dataset.view === currentView));
   document.getElementById("tb-explode").classList.toggle("on", exploded);
@@ -527,7 +546,7 @@ function tick() {
     u.offset += (u.targetOffset - u.offset) * k;
     g.position.y = u.baseY + u.offset;
   });
-  entrance.position.y = floors[1].userData.offset;   // stubište prati 1. kat
+  entrance.position.y = floors[ENTRY_LEVEL].userData.offset;   // stubište prati polukat
   const roofCover = roof.visible && !exploded;
   unitById.forEach(({ label: l, data }) => {
     l.visible = !roofCover && (currentView === "all" || data.kat === Number(currentView));
