@@ -1,4 +1,4 @@
-import { EXTRA } from "./i18n-sadrzaji.js";
+import { EXTRA } from "./i18n-sadrzaji.js?v=202610051512";
 // Prijevodi sučelja. Ključ koji nedostaje u nekom jeziku uzima se iz engleskog, pa iz hrvatskog.
 export const JEZICI = [
   ["hr", "HR", "Hrvatski"], ["en", "EN", "English"], ["de", "DE", "Deutsch"], ["it", "IT", "Italiano"],

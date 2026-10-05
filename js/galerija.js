@@ -1,6 +1,6 @@
-import { lang as initialLang } from "./common.js";
-import { t } from "./i18n.js";
-import { FOTOGRAFIJE, JEDINICE } from "./podaci.js";
+import { lang as initialLang } from "./common.js?v=202610051512";
+import { t } from "./i18n.js?v=202610051512";
+import { FOTOGRAFIJE, JEDINICE } from "./podaci.js?v=202610051512";
 
 let lang = initialLang;
 const MAPE = ["zajednicko", ...JEDINICE.map((u) => `jedinica-${u.id}`)];

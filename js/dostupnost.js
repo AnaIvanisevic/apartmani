@@ -1,7 +1,7 @@
-import { lang as l0, href } from "./common.js";
-import { t } from "./i18n.js";
-import { JEDINICE } from "./podaci.js";
-import { ZAUZETO, AZURIRANO } from "./zauzetost.js";
+import { lang as l0, href } from "./common.js?v=202610051512";
+import { t } from "./i18n.js?v=202610051512";
+import { JEDINICE } from "./podaci.js?v=202610051512";
+import { ZAUZETO, AZURIRANO } from "./zauzetost.js?v=202610051512";
 
 let lang = l0;
 let unit = 1;

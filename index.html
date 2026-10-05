@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=202610051512">
 </head>
 <body>
   <header id="site-header"></header>
@@ -101,7 +101,7 @@
 
   <script type="module">
     import "./js/common.js";
-    import { NASLOVNA_FOTO } from "./js/podaci.js";
+    import { NASLOVNA_FOTO } from "./js/podaci.js?v=202610051512";
 
     const ICON = {
       wifi: '<path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/>',
@@ -118,8 +118,8 @@
                 ["tv","amen_tv"],["bbq","amen_bbq"],["sup","amen_sup"],["washer","amen_washer"]];
     document.getElementById("amenities").innerHTML = AM.map(([i,k]) =>
       `<div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[i]}</svg><span data-i18n="${k}"></span></div>`).join("");
-    const { applyI18n } = await import("./js/i18n.js");
-    const { lang } = await import("./js/common.js");
+    const { applyI18n } = await import("./js/i18n.js?v=202610051512");
+    const { lang } = await import("./js/common.js?v=202610051512");
     applyI18n(lang, document.getElementById("amenities"));
 
     if (NASLOVNA_FOTO) {
