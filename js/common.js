@@ -1,4 +1,4 @@
-import { JEZICI, getLang, setLang, applyI18n } from "./i18n.js";
+import { JEZICI, getLang, setLang, applyI18n, t } from "./i18n.js";
 import { KONTAKT, LOKACIJA } from "./podaci.js";
 
 export let lang = getLang();
@@ -68,6 +68,11 @@ function buildFooter() {
   </div>`;
 }
 
+function setTitle() {
+  const k = document.body.dataset.title;
+  if (k) document.title = `${t(k, lang)} – Apartmani Dorana`;
+}
+
 export function fixLinks(root = document) {
   root.querySelectorAll("[data-page]").forEach((a) => { a.href = href(a.dataset.page) + (a.dataset.hash || ""); });
 }
@@ -76,4 +81,5 @@ buildHeader();
 buildFooter();
 applyI18n(lang);
 fixLinks();
-document.addEventListener("langchange", () => fixLinks());
+setTitle();
+document.addEventListener("langchange", () => { fixLinks(); setTitle(); });

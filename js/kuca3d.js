@@ -52,7 +52,9 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(40, 1, 0.5, 400);
 const HOME = { pos: new THREE.Vector3(34, 28, 36), target: new THREE.Vector3(0, 6, 0) };
 const EXPL_HOME = { pos: new THREE.Vector3(42, 38, 46), target: new THREE.Vector3(0, 11, 0) };
-camera.position.copy(EXPL_HOME.pos);
+// na uskim (uspravnim) prikazima kamera je malo bliže
+const near = (v) => (host.clientWidth / host.clientHeight < 0.8 ? v.clone().multiplyScalar(0.88) : v);
+camera.position.copy(near(EXPL_HOME.pos));
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.target.copy(EXPL_HOME.target);
@@ -144,7 +146,7 @@ road.position.set(24, 0.03, 0);
 road.receiveShadow = true;
 scene.add(road);
 const streetLbl = tLabel("lbl_street", "lbl-place");
-streetLbl.position.set(22, 0.4, -18);
+streetLbl.position.set(23, 0.4, -28);
 scene.add(streetLbl);
 
 // more (zapad, ~200 m) – plavi pojas na rubu
@@ -380,7 +382,7 @@ function setView(v, fly = true) {
   applyView();
   if (!fly) return;
   if (v === "all") {
-    flyTo(exploded ? EXPL_HOME.pos : HOME.pos, exploded ? EXPL_HOME.target : HOME.target);
+    flyTo(near(exploded ? EXPL_HOME.pos : HOME.pos), exploded ? EXPL_HOME.target : HOME.target);
   } else {
     const y = floorY(Number(v)) + 1;
     flyTo(new THREE.Vector3(14, y + 22, 18), new THREE.Vector3(0, y, 0));
@@ -401,7 +403,7 @@ document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("clic
 document.getElementById("tb-explode").addEventListener("click", () => {
   exploded = !exploded;
   applyView();
-  if (currentView === "all") flyTo(exploded ? EXPL_HOME.pos : HOME.pos, exploded ? EXPL_HOME.target : HOME.target);
+  if (currentView === "all") flyTo(near(exploded ? EXPL_HOME.pos : HOME.pos), exploded ? EXPL_HOME.target : HOME.target);
 });
 document.getElementById("tb-roof").addEventListener("click", () => {
   if (currentView !== "all") setView("all", false);
@@ -510,7 +512,7 @@ function resize() {
   labelRenderer.setSize(w, h);
   camera.aspect = w / h;
   // na uskim ekranima odmakni kameru
-  camera.fov = w < 600 ? 52 : 40;
+  camera.fov = w / h < 0.8 ? 48 : 40;
   camera.updateProjectionMatrix();
 }
 new ResizeObserver(resize).observe(host);
