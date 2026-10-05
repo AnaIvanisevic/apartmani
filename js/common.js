@@ -1,5 +1,5 @@
-import { JEZICI, getLang, setLang, applyI18n, t } from "./i18n.js?v=202610051548";
-import { KONTAKT, LOKACIJA } from "./podaci.js?v=202610051548";
+import { JEZICI, getLang, setLang, applyI18n, t } from "./i18n.js?v=202610051553";
+import { KONTAKT, LOKACIJA } from "./podaci.js?v=202610051553";
 
 export let lang = getLang();
 
