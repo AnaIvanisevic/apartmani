@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Provjeri dostupnost – Apartmani Dorana</title>
+  <meta name="description" content="Kalendar slobodnih termina za svih 8 apartmana Apartmani Dorana u Vrsima.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-title="nav_avail">
+  <header id="site-header"></header>
+  <div class="wrap">
+    <div class="page-head">
+      <h1 data-i18n="av_title"></h1>
+      <p data-i18n="av_p"></p>
+    </div>
+    <div class="tabs" id="av-tabs"></div>
+    <div class="card av-card">
+      <div id="av-unit" class="av-unit"></div>
+      <div class="av-nav">
+        <button class="lb-btn av-arrow" id="av-prev" aria-label="Previous">‹</button>
+        <div class="av-legend">
+          <span><i class="lg free"></i><span data-i18n="av_free"></span></span>
+          <span><i class="lg busy"></i><span data-i18n="av_busy"></span></span>
+          <span><i class="lg sel"></i><span data-i18n="av_sel"></span></span>
+        </div>
+        <button class="lb-btn av-arrow" id="av-next" aria-label="Next">›</button>
+      </div>
+      <div class="av-cal" id="av-cal"></div>
+      <div class="av-sel" id="av-sel"></div>
+      <p class="av-updated" id="av-updated"></p>
+    </div>
+  </div>
+  <footer id="site-footer"></footer>
+  <script type="module" src="js/dostupnost.js"></script>
+</body>
+</html>

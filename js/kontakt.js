@@ -6,20 +6,23 @@ let lang = initialLang;
 const { lat, lng } = LOKACIJA;
 const d = 0.006;
 
-document.getElementById("map").src =
-  `https://www.openstreetmap.org/export/embed.html?bbox=${lng - d}%2C${lat - d * 0.6}%2C${lng + d}%2C${lat + d * 0.6}&layer=mapnik&marker=${lat}%2C${lng}`;
-document.getElementById("address").textContent = LOKACIJA.adresa;
-document.getElementById("directions").href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+const $ = (id) => document.getElementById(id);
+if ($("map")) {
+  $("map").src = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - d}%2C${lat - d * 0.6}%2C${lng + d}%2C${lat + d * 0.6}&layer=mapnik&marker=${lat}%2C${lng}`;
+  $("address").textContent = LOKACIJA.adresa;
+  $("directions").href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+}
 
 function renderDirect() {
   const parts = [`<strong>${t("host", lang)}:</strong> ${KONTAKT.domacica}`];
   if (KONTAKT.telefon) parts.push(`<a href="tel:${KONTAKT.telefon.replace(/\s/g, "")}">${KONTAKT.telefon}</a> · <a href="https://wa.me/${KONTAKT.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>`);
   if (KONTAKT.email) parts.push(`<a href="mailto:${KONTAKT.email}">${KONTAKT.email}</a>`);
-  document.getElementById("direct").innerHTML = parts.join("<br>");
+  if ($("direct")) $("direct").innerHTML = parts.join("<br>");
 }
 
 const sel = document.getElementById("unit-select");
 function renderUnits() {
+  if (!sel) return;
   const v = sel.value;
   sel.innerHTML = `<option value="">${t("f_any", lang)}</option>` +
     JEDINICE.map((u) => `<option value="${u.id}">${t("unit", lang)} ${u.id}</option>`).join("");
@@ -44,10 +47,10 @@ function message() {
   return lines.join("\n");
 }
 
-document.getElementById("send-wa").addEventListener("click", () => {
+if (sel) document.getElementById("send-wa").addEventListener("click", () => {
   window.open(`https://wa.me/${KONTAKT.whatsapp}?text=${encodeURIComponent(message())}`, "_blank", "noopener");
 });
-document.getElementById("send-mail").addEventListener("click", () => {
+if (sel) document.getElementById("send-mail").addEventListener("click", () => {
   const subj = `Upit / Inquiry – Apartmani Dorana`;
   location.href = `mailto:${KONTAKT.email}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(message())}`;
 });
@@ -56,8 +59,12 @@ document.addEventListener("langchange", (e) => { lang = e.detail; renderUnits();
 
 renderUnits();
 renderDirect();
-const m = location.hash.match(/upit-(\d)/);
-if (m) {
-  sel.value = m[1];
-  document.getElementById("upit").scrollIntoView();
+const qp = new URLSearchParams(location.search);
+const hm = location.hash.match(/upit-(\d)/);
+if (sel) {
+  const j = qp.get("j") || (hm && hm[1]);
+  if (j) sel.value = j;
+  const iso = /^\d{4}-\d{2}-\d{2}$/;
+  if (iso.test(qp.get("od") || "")) document.querySelector('[name="arrive"]').value = qp.get("od");
+  if (iso.test(qp.get("do") || "")) document.querySelector('[name="depart"]').value = qp.get("do");
 }

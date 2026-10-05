@@ -8,7 +8,9 @@ const PAGES = [
   ["kuca-3d.html", "nav_3d"],
   ["fotografije.html", "nav_photos"],
   ["sadrzaji.html", "nav_amen"],
+  ["dostupnost.html", "nav_avail"],
   ["lokacija.html", "nav_contact"],
+  ["upit.html", "nav_inquiry", "nav-cta"],
 ];
 
 const LOGO = `<svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
@@ -32,8 +34,8 @@ function buildHeader() {
   el.className = "site-header";
   el.innerHTML = `<div class="wrap">
       <a class="brand" href="${href("index.html")}">${LOGO}<span class="brand-name">Apartmani Dorana</span></a>
-      <nav class="nav" id="nav">${PAGES.map(([p, k]) =>
-        `<a href="${href(p)}" data-i18n="${k}"${p === cur ? ' class="active" aria-current="page"' : ""}></a>`).join("")}</nav>
+      <nav class="nav" id="nav">${PAGES.map(([p, k, c]) =>
+        `<a href="${href(p)}" data-i18n="${k}" class="${[c, p === cur ? "active" : ""].filter(Boolean).join(" ")}"${p === cur ? ' aria-current="page"' : ""}></a>`).join("")}</nav>
       <select class="lang-select" id="lang-select" aria-label="Language">${JEZICI.map(([c, s, n]) =>
         `<option value="${c}" ${c === lang ? "selected" : ""} title="${n}">${s}</option>`).join("")}</select>
       <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false">

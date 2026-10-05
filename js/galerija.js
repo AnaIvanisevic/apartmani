@@ -44,7 +44,8 @@ function renderGallery() {
     const u = JEDINICE.find((x) => `jedinica-${x.id}` === active);
     html = `<div class="unit-intro"><h2>${folderName(active)}</h2><p>${t("desc_" + u.tip, lang)}</p>
       <a class="btn btn-ghost" href="kuca-3d.html?lang=${lang}#jedinica-${u.id}">${t("nav_3d", lang)}</a>
-      <a class="btn btn-primary" href="lokacija.html?lang=${lang}#upit-${u.id}">${t("unit_inquiry", lang)}</a></div>` + html;
+      <a class="btn btn-ghost" href="dostupnost.html?lang=${lang}#jedinica-${u.id}">${t("btn_avail", lang)}</a>
+      <a class="btn btn-primary" href="upit.html?lang=${lang}&j=${u.id}">${t("unit_inquiry", lang)}</a></div>` + html;
   }
   el.innerHTML = html;
   el.querySelectorAll("button[data-i]").forEach((b) => b.addEventListener("click", () => open(Number(b.dataset.i))));

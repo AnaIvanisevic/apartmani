@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pošalji upit – Apartmani Dorana</title>
+  <meta name="description" content="Pošaljite upit za smještaj u Apartmanima Dorana u Vrsima – izravno domaćici, e-mailom ili WhatsAppom.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-title="nav_inquiry">
+  <header id="site-header"></header>
+  <div class="wrap" style="max-width:760px">
+    <div class="page-head">
+      <h1 data-i18n="inq_title"></h1>
+      <p data-i18n="inq_p"></p>
+    </div>
+  </div>
+  <section class="section" id="upit" style="padding-top:0">
+    <div class="wrap" style="max-width:760px">
+            <form class="form card" id="form" onsubmit="return false">
+        <label class="full"><span data-i18n="f_name"></span><input name="name" autocomplete="name" required></label>
+        <label><span data-i18n="f_arrive"></span><input type="date" name="arrive"></label>
+        <label><span data-i18n="f_depart"></span><input type="date" name="depart"></label>
+        <label><span data-i18n="f_adults"></span><input type="number" name="adults" min="1" max="10" value="2"></label>
+        <label><span data-i18n="f_kids"></span><input type="number" name="kids" min="0" max="10" value="0"></label>
+        <label class="full"><span data-i18n="f_unit"></span><select name="unit" id="unit-select"></select></label>
+        <label class="full"><span data-i18n="f_msg"></span><textarea name="msg" rows="4"></textarea></label>
+        <div class="full btn-row">
+          <button class="btn btn-wa" type="button" id="send-wa" data-i18n="f_send_wa"></button>
+          <button class="btn btn-primary" type="button" id="send-mail" data-i18n="f_send_mail"></button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <div class="wrap" style="max-width:760px;padding-bottom:64px">
+    <div class="card">
+      <h3 data-i18n="contact_direct"></h3>
+      <p id="direct" style="margin:0"></p>
+    </div>
+  </div>
+  <footer id="site-footer"></footer>
+  <script type="module" src="js/kontakt.js"></script>
+</body>
+</html>

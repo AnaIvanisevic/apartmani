@@ -59,23 +59,15 @@
     </div>
   </section>
 
-  <section class="section alt" id="upit">
-    <div class="wrap" style="max-width:760px">
-      <h2 data-i18n="form_title"></h2>
-      <p class="lead" data-i18n="form_p"></p>
-      <form class="form card" id="form" onsubmit="return false">
-        <label class="full"><span data-i18n="f_name"></span><input name="name" autocomplete="name" required></label>
-        <label><span data-i18n="f_arrive"></span><input type="date" name="arrive"></label>
-        <label><span data-i18n="f_depart"></span><input type="date" name="depart"></label>
-        <label><span data-i18n="f_adults"></span><input type="number" name="adults" min="1" max="10" value="2"></label>
-        <label><span data-i18n="f_kids"></span><input type="number" name="kids" min="0" max="10" value="0"></label>
-        <label class="full"><span data-i18n="f_unit"></span><select name="unit" id="unit-select"></select></label>
-        <label class="full"><span data-i18n="f_msg"></span><textarea name="msg" rows="4"></textarea></label>
-        <div class="full btn-row">
-          <button class="btn btn-wa" type="button" id="send-wa" data-i18n="f_send_wa"></button>
-          <button class="btn btn-primary" type="button" id="send-mail" data-i18n="f_send_mail"></button>
+  <section class="section alt">
+    <div class="wrap">
+      <div class="cta-band">
+        <div><h2 data-i18n="loc_inquiry_cta"></h2><p data-i18n="form_p"></p></div>
+        <div class="btn-row">
+          <a class="btn btn-light" data-page="dostupnost.html" data-i18n="btn_avail"></a>
+          <a class="btn btn-light" data-page="upit.html" data-i18n="nav_inquiry"></a>
         </div>
-      </form>
+      </div>
     </div>
   </section>
 
