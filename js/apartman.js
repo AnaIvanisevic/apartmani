@@ -1,9 +1,9 @@
-import { lang as l0, href } from "./common.js?v=202610051553";
-import { t } from "./i18n.js?v=202610051553";
-import { JEDINICE, FOTOGRAFIJE } from "./podaci.js?v=202610051553";
-import { floorName, layoutHTML, unitHref, persons } from "./kartice.js?v=202610051553";
-import { mountCalendar } from "./kalendar.js?v=202610051553";
-import { makeLightbox } from "./lightbox.js?v=202610051553";
+import { lang as l0, href } from "./common.js?v=202610051619";
+import { t } from "./i18n.js?v=202610051619";
+import { JEDINICE, FOTOGRAFIJE } from "./podaci.js?v=202610051619";
+import { floorName, layoutHTML, unitHref, persons } from "./kartice.js?v=202610051619";
+import { mountCalendar } from "./kalendar.js?v=202610051619";
+import { makeLightbox } from "./lightbox.js?v=202610051619";
 
 let lang = l0;
 const qp = new URLSearchParams(location.search);

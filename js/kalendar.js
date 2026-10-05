@@ -1,7 +1,7 @@
 // Kalendar zauzetosti jednog apartmana (koristi se na stranicama Dostupnost i Apartman)
-import { t } from "./i18n.js?v=202610051553";
-import { AZURIRANO } from "./zauzetost.js?v=202610051553";
-import { key, parse, today, nights, fmt, busyNights } from "./zauzetost-util.js?v=202610051553";
+import { t } from "./i18n.js?v=202610051619";
+import { AZURIRANO } from "./zauzetost.js?v=202610051619";
+import { key, parse, today, nights, fmt, busyNights } from "./zauzetost-util.js?v=202610051619";
 
 export function mountCalendar(root, opts) {
   let unit = opts.unit, lang = opts.lang;

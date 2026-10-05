@@ -1,6 +1,6 @@
 // Kartice apartmana i statični raspored po katovima
-import { t } from "./i18n.js?v=202610051553";
-import { JEDINICE, KATOVI, FOTOGRAFIJE } from "./podaci.js?v=202610051553";
+import { t } from "./i18n.js?v=202610051619";
+import { JEDINICE, KATOVI, FOTOGRAFIJE } from "./podaci.js?v=202610051619";
 
 const OSOBE = {
   hr: { one: "osoba", few: "osobe", other: "osoba" }, en: { one: "guest", other: "guests" },
