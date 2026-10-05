@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /alati/
+
+Sitemap: https://anaivanisevic.github.io/apartmani/sitemap.xml
