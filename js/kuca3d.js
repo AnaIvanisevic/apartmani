@@ -1,9 +1,9 @@
 import * as THREE from "three";
-import { OrbitControls } from "./vendor/OrbitControls.js?v=202610051619";
-import { CSS2DRenderer, CSS2DObject } from "./vendor/CSS2DRenderer.js?v=202610051619";
-import { lang as initialLang, href } from "./common.js?v=202610051619";
-import { t } from "./i18n.js?v=202610051619";
-import { JEDINICE, OSTALO, KATOVI } from "./podaci.js?v=202610051619";
+import { OrbitControls } from "./vendor/OrbitControls.js?v=202610051620";
+import { CSS2DRenderer, CSS2DObject } from "./vendor/CSS2DRenderer.js?v=202610051620";
+import { lang as initialLang, href } from "./common.js?v=202610051620";
+import { t } from "./i18n.js?v=202610051620";
+import { JEDINICE, OSTALO, KATOVI } from "./podaci.js?v=202610051620";
 
 let lang = initialLang;
 

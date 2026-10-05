@@ -1,4 +1,4 @@
-import { EXTRA } from "./i18n-sadrzaji.js?v=202610051619";
+import { EXTRA } from "./i18n-sadrzaji.js?v=202610051620";
 // Prijevodi sučelja. Ključ koji nedostaje u nekom jeziku uzima se iz engleskog, pa iz hrvatskog.
 export const JEZICI = [
   ["hr", "HR", "Hrvatski"], ["en", "EN", "English"], ["de", "DE", "Deutsch"], ["it", "IT", "Italiano"],
@@ -9,7 +9,7 @@ export const T = {
   hr: {
     nav_home: "Početna", nav_3d: "Kuća u 3D", nav_photos: "Fotografije", nav_contact: "Lokacija i kontakt",
     hero_kicker: "Vrsi · Zadar · Hrvatska",
-    hero_sub: "Obiteljska kuća s osam apartmana, 200 m od mora, okružena starim maslinikom.",
+    hero_sub: "Obiteljska kuća s 8 apartmana, 200 m od mora.",
     btn_3d: "Istraži kuću u 3D", btn_inquiry: "Pošalji upit",
     hl_sea: "200 m do mora", hl_parking: "Besplatan parking među maslinama", hl_units: "8 apartmana", hl_rating: "9,7 – ocjena gostiju",
     about_title: "Mirni kutak Vrsi, korak do mora",
@@ -51,7 +51,7 @@ export const T = {
   en: {
     nav_home: "Home", nav_3d: "House in 3D", nav_photos: "Photos", nav_contact: "Location & contact",
     hero_kicker: "Vrsi · Zadar · Croatia",
-    hero_sub: "A family house with eight apartments, 200 m from the sea, surrounded by an old olive grove.",
+    hero_sub: "A family house with 8 apartments, 200 m from the sea.",
     btn_3d: "Explore the house in 3D", btn_inquiry: "Send an inquiry",
     hl_sea: "200 m to the sea", hl_parking: "Free parking under olive trees", hl_units: "8 apartments", hl_rating: "9.7 – guest rating",
     about_title: "A quiet corner of Vrsi, steps from the sea",
@@ -93,7 +93,7 @@ export const T = {
   de: {
     nav_home: "Start", nav_3d: "Haus in 3D", nav_photos: "Fotos", nav_contact: "Lage & Kontakt",
     hero_kicker: "Vrsi · Zadar · Kroatien",
-    hero_sub: "Ein Familienhaus mit acht Apartments, 200 m vom Meer, umgeben von einem alten Olivenhain.",
+    hero_sub: "Ein Familienhaus mit 8 Apartments, 200 m vom Meer.",
     btn_3d: "Haus in 3D entdecken", btn_inquiry: "Anfrage senden",
     hl_sea: "200 m zum Meer", hl_parking: "Kostenloses Parken unter Olivenbäumen", hl_units: "8 Apartments", hl_rating: "9,7 – Gästebewertung",
     about_title: "Eine ruhige Ecke von Vrsi, nah am Meer",
@@ -135,7 +135,7 @@ export const T = {
   it: {
     nav_home: "Home", nav_3d: "Casa in 3D", nav_photos: "Foto", nav_contact: "Posizione e contatti",
     hero_kicker: "Vrsi · Zara · Croazia",
-    hero_sub: "Una casa di famiglia con otto appartamenti, a 200 m dal mare, circondata da un antico uliveto.",
+    hero_sub: "Una casa di famiglia con 8 appartamenti, a 200 m dal mare.",
     btn_3d: "Esplora la casa in 3D", btn_inquiry: "Invia richiesta",
     hl_sea: "200 m dal mare", hl_parking: "Parcheggio gratuito tra gli ulivi", hl_units: "8 appartamenti", hl_rating: "9,7 – voto degli ospiti",
     about_title: "Un angolo tranquillo di Vrsi, a due passi dal mare",
@@ -177,7 +177,7 @@ export const T = {
   sl: {
     nav_home: "Domov", nav_3d: "Hiša v 3D", nav_photos: "Fotografije", nav_contact: "Lokacija in kontakt",
     hero_kicker: "Vrsi · Zadar · Hrvaška",
-    hero_sub: "Družinska hiša z osmimi apartmaji, 200 m od morja, obdana s starim oljčnikom.",
+    hero_sub: "Družinska hiša z 8 apartmaji, 200 m od morja.",
     btn_3d: "Raziščite hišo v 3D", btn_inquiry: "Pošljite povpraševanje",
     hl_sea: "200 m do morja", hl_parking: "Brezplačno parkiranje med oljkami", hl_units: "8 apartmajev", hl_rating: "9,7 – ocena gostov",
     about_title: "Miren kotiček Vrsi, korak do morja",
@@ -219,7 +219,7 @@ export const T = {
   pl: {
     nav_home: "Start", nav_3d: "Dom w 3D", nav_photos: "Zdjęcia", nav_contact: "Lokalizacja i kontakt",
     hero_kicker: "Vrsi · Zadar · Chorwacja",
-    hero_sub: "Rodzinny dom z ośmioma apartamentami, 200 m od morza, otoczony starym gajem oliwnym.",
+    hero_sub: "Rodzinny dom z 8 apartamentami, 200 m od morza.",
     btn_3d: "Zobacz dom w 3D", btn_inquiry: "Wyślij zapytanie",
     hl_sea: "200 m do morza", hl_parking: "Bezpłatny parking wśród oliwek", hl_units: "8 apartamentów", hl_rating: "9,7 – ocena gości",
     about_title: "Spokojny zakątek Vrsi, tuż przy morzu",
@@ -261,7 +261,7 @@ export const T = {
   cs: {
     nav_home: "Úvod", nav_3d: "Dům ve 3D", nav_photos: "Fotografie", nav_contact: "Poloha a kontakt",
     hero_kicker: "Vrsi · Zadar · Chorvatsko",
-    hero_sub: "Rodinný dům s osmi apartmány, 200 m od moře, obklopený starým olivovým hájem.",
+    hero_sub: "Rodinný dům s 8 apartmány, 200 m od moře.",
     btn_3d: "Prozkoumat dům ve 3D", btn_inquiry: "Poslat poptávku",
     hl_sea: "200 m k moři", hl_parking: "Parkování zdarma mezi olivovníky", hl_units: "8 apartmánů", hl_rating: "9,7 – hodnocení hostů",
     about_title: "Klidný kout Vrsi, kousek od moře",
@@ -303,7 +303,7 @@ export const T = {
   sk: {
     nav_home: "Úvod", nav_3d: "Dom v 3D", nav_photos: "Fotografie", nav_contact: "Poloha a kontakt",
     hero_kicker: "Vrsi · Zadar · Chorvátsko",
-    hero_sub: "Rodinný dom s ôsmimi apartmánmi, 200 m od mora, obklopený starým olivovým hájom.",
+    hero_sub: "Rodinný dom s 8 apartmánmi, 200 m od mora.",
     btn_3d: "Preskúmať dom v 3D", btn_inquiry: "Poslať dopyt",
     hl_sea: "200 m k moru", hl_parking: "Parkovanie zadarmo medzi olivovníkmi", hl_units: "8 apartmánov", hl_rating: "9,7 – hodnotenie hostí",
     about_title: "Pokojný kút Vrsi, kúsok od mora",

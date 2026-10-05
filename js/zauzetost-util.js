@@ -1,5 +1,5 @@
 // Pomoćne funkcije za datume i zauzetost
-import { ZAUZETO } from "./zauzetost.js?v=202610051619";
+import { ZAUZETO } from "./zauzetost.js?v=202610051620";
 
 export const pad = (n) => String(n).padStart(2, "0");
 export const key = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
