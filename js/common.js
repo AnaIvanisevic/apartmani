@@ -7,6 +7,7 @@ const PAGES = [
   ["index.html", "nav_home"],
   ["kuca-3d.html", "nav_3d"],
   ["fotografije.html", "nav_photos"],
+  ["sadrzaji.html", "nav_amen"],
   ["lokacija.html", "nav_contact"],
 ];
 

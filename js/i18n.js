@@ -1,3 +1,4 @@
+import { EXTRA } from "./i18n-sadrzaji.js";
 // Prijevodi sučelja. Ključ koji nedostaje u nekom jeziku uzima se iz engleskog, pa iz hrvatskog.
 export const JEZICI = [
   ["hr", "HR", "Hrvatski"], ["en", "EN", "English"], ["de", "DE", "Deutsch"], ["it", "IT", "Italiano"],
@@ -342,6 +343,8 @@ export const T = {
     footer_note: "Rodinné apartmány vo Vrsi",
   },
 };
+
+for (const l of Object.keys(EXTRA)) Object.assign(T[l], EXTRA[l]);
 
 const KEY = "dorana-lang";
 

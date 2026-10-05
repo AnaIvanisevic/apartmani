@@ -443,6 +443,7 @@ function renderInfo() {
   box.innerHTML = `
     <div style="display:flex;align-items:center;gap:10px"><span class="swatch" style="background:${u.boja};width:18px;height:18px"></span>
       <h3>${t("unit", lang)} ${u.id}</h3></div>
+    <p style="margin:10px 0 0;color:var(--muted)">${t("desc_" + u.tip, lang)}</p>
     <div class="meta">
       <div><span>${t("floor", lang)}</span><strong>${floorName(u.kat)}</strong></div>
       <div><span>${t("guests", lang)}</span><strong>${u.osoba ?? "—"}</strong></div>

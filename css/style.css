@@ -258,3 +258,17 @@ p { margin: 0 0 1em; }
   .viewer { height: 64vh; min-height: 380px; }
   .tb-sep { display: none; }
 }
+
+.unit-intro { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px 24px; margin-bottom: 8px; }
+.unit-intro h2 { margin: 0; flex: 1 0 100%; font-size: 2rem; }
+.unit-intro p { margin: 0 0 6px; flex: 1 0 100%; color: var(--muted); }
+.unit-intro .btn { padding: 10px 18px; font-size: .95rem; }
+.amen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; padding-bottom: 64px; }
+.amen-grid h3 { color: var(--terracotta); }
+.amen-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.amen-grid li { display: flex; gap: 10px; align-items: flex-start; }
+.amen-grid li::before { content: "✓"; color: var(--olive); font-weight: 800; }
+.units-table { width: 100%; border-collapse: collapse; }
+.units-table td { padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.units-table td:first-child { font-weight: 800; white-space: nowrap; padding-right: 16px; }
+@media (max-width: 1060px) and (min-width: 881px) { .nav a { padding: 8px 8px; font-size: .88rem; } .brand-name { font-size: 1.3rem; } }

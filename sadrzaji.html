@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sadržaji – Apartmani Dorana</title>
+  <meta name="description" content="Sadržaji Apartmana Dorana u Vrsima: klima, opremljena kuhinja, WiFi, besplatan parking među maslinama, roštilj, 250 m do plaže.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <div class="wrap">
+    <div class="page-head">
+      <h1 data-i18n="am_title"></h1>
+      <p data-i18n="am_p"></p>
+    </div>
+    <div class="amen-grid" id="amen-grid"></div>
+    <div class="card" style="margin-bottom:64px">
+      <h3 data-i18n="units_list"></h3>
+      <table class="units-table" id="units-table"></table>
+    </div>
+  </div>
+  <footer id="site-footer"></footer>
+  <script type="module">
+    import { lang as l0 } from "./js/common.js";
+    import { t } from "./js/i18n.js";
+    import { SADRZAJI } from "./js/i18n-sadrzaji.js";
+    import { JEDINICE } from "./js/podaci.js";
+    let lang = l0;
+    function render() {
+      document.getElementById("amen-grid").innerHTML = SADRZAJI.map(([cat, items]) =>
+        `<div class="card"><h3>${t(cat, lang)}</h3><ul>${items.map((k) => `<li>${t(k, lang)}</li>`).join("")}</ul></div>`).join("");
+      document.getElementById("units-table").innerHTML = JEDINICE.map((u) =>
+        `<tr><td><a href="fotografije.html?lang=${lang}#jedinica-${u.id}">${t("unit", lang)} ${u.id}</a></td><td>${t("desc_" + u.tip, lang)}</td></tr>`).join("");
+    }
+    document.addEventListener("langchange", (e) => { lang = e.detail; render(); });
+    render();
+  </script>
+</body>
+</html>
