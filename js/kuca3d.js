@@ -3,19 +3,19 @@ import { OrbitControls } from "./vendor/OrbitControls.js";
 import { CSS2DRenderer, CSS2DObject } from "./vendor/CSS2DRenderer.js";
 import { lang as initialLang, href } from "./common.js";
 import { t } from "./i18n.js";
-import { JEDINICE, OSTALO } from "./podaci.js";
+import { JEDINICE, OSTALO, KATOVI } from "./podaci.js";
 
 let lang = initialLang;
 
 // ---------------- Dimenzije (metri, okvirno prema satelitskoj snimci) ----------------
 const W = 13, D = 10.5;               // tlocrt kuće
 const HX = W / 2, HZ = D / 2;
-const FLOOR_H = 3.0;                  // visina etaže
+const FLOOR_H = 2.8;                  // visina etaže
 const SLAB = 0.25;
 const ROOM_H = 2.55;
 const PLINTH = 0.35;                  // kuća je malo podignuta od terena
 const EXPLODE = 2.6;                  // razmak katova kod "razdvoji katove"
-const N_FLOORS = 3;
+const N_FLOORS = KATOVI.length;
 
 const COL = {
   wall: 0xe7a7a2, wallEdge: 0xb87a74, slab: 0xf3ece2, roof: 0xb4533a, roofEdge: 0x8f3f2a,
@@ -50,8 +50,8 @@ host.appendChild(labelRenderer.domElement);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(40, 1, 0.5, 400);
-const HOME = { pos: new THREE.Vector3(30, 24, 30), target: new THREE.Vector3(0, 4, 0) };
-const EXPL_HOME = { pos: new THREE.Vector3(34, 30, 36), target: new THREE.Vector3(0, 7, 0) };
+const HOME = { pos: new THREE.Vector3(34, 28, 36), target: new THREE.Vector3(0, 6, 0) };
+const EXPL_HOME = { pos: new THREE.Vector3(42, 38, 46), target: new THREE.Vector3(0, 11, 0) };
 camera.position.copy(EXPL_HOME.pos);
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -59,7 +59,7 @@ controls.target.copy(EXPL_HOME.target);
 controls.enableDamping = true;
 controls.dampingFactor = 0.08;
 controls.minDistance = 10;
-controls.maxDistance = 90;
+controls.maxDistance = 110;
 controls.maxPolarAngle = Math.PI * 0.47;
 controls.screenSpacePanning = true;
 
@@ -138,13 +138,13 @@ scene.add(parkLbl);
 });
 
 // ulica (sjever)
-const road = new THREE.Mesh(new THREE.PlaneGeometry(80, 6), new THREE.MeshStandardMaterial({ color: COL.road, roughness: 1 }));
+const road = new THREE.Mesh(new THREE.PlaneGeometry(6, 80), new THREE.MeshStandardMaterial({ color: COL.road, roughness: 1 }));
 road.rotation.x = -Math.PI / 2;
-road.position.set(0, 0.03, -15);
+road.position.set(24, 0.03, 0);
 road.receiveShadow = true;
 scene.add(road);
 const streetLbl = tLabel("lbl_street", "lbl-place");
-streetLbl.position.set(-38, 0.4, -15);
+streetLbl.position.set(24, 0.4, -14);
 scene.add(streetLbl);
 
 // more (zapad, ~200 m) – plavi pojas na rubu
@@ -234,13 +234,6 @@ for (let f = 0; f < N_FLOORS; f++) {
     const r3 = r2.clone(); r3.position.z = -(D - 1.5) / 2; rail.add(r3);
     rail.children.forEach((m) => { m.material = m.material.clone(); m.material.transparent = true; m.material.opacity = 0.85; });
     g.add(rail);
-    // balkon na jugu
-    const bal2 = box(W - 2.5, 0.18, 1.4, COL.slab);
-    bal2.position.set(-0.75, 0.09, HZ + 0.7);
-    g.add(bal2);
-    const r4 = box(W - 2.5, 1.0, 0.06, COL.rail); r4.position.set(-0.75, 0.68, HZ + 1.37);
-    r4.material.transparent = true; r4.material.opacity = 0.85;
-    g.add(r4);
   } else {
     const ter = box(W - 1, 0.12, 3, 0xd9c7a6);
     ter.position.set(-0.5, -PLINTH + 0.06, HZ + 1.6);
@@ -257,8 +250,8 @@ for (let f = 0; f < N_FLOORS; f++) {
     if (o.vrsta === "hodnik") {
       // unutarnje stubište
       for (let s = 0; s < 8; s++) {
-        const st = box(1.2, 0.18, 0.5, COL.stair);
-        st.position.set((x0 + x1) / 2, SLAB + 0.45 + s * 0.3, z0 + 1.2 + s * 0.5);
+        const st = box(0.5, 0.18, 1.2, COL.stair);
+        st.position.set(x0 + 2 + s * 0.5, SLAB + 0.45 + s * 0.3, (z0 + z1) / 2);
         g.add(st);
       }
     }
@@ -321,7 +314,7 @@ const entrance = new THREE.Group();
   const landY = FLOOR_H;                       // podest na razini 1. kata
   const sx0 = HX + 0.15, sx1 = HX + 1.55;      // širina stubišta
   const steps = 16, run = 0.3, rise = (landY + PLINTH) / steps;
-  const startZ = 4.2;                          // kreće s južne strane prema podestu
+  const startZ = 1.6;                          // kreće s parkirališta prema podestu uz stubište
   for (let s = 0; s < steps; s++) {
     const st = box(sx1 - sx0, rise * (s + 1), run, COL.stair);
     st.position.set((sx0 + sx1) / 2, (rise * (s + 1)) / 2, startZ - s * run);
@@ -395,6 +388,16 @@ function setView(v, fly = true) {
   }
 }
 
+{
+  const allBtn = document.querySelector('[data-view="all"]');
+  let prev = allBtn;
+  KATOVI.forEach((k, i) => {
+    if (k.gosti === false) return;
+    const b = document.createElement("button");
+    b.className = "tb-btn"; b.dataset.view = String(i); b.dataset.i18n = k.naziv; b.textContent = t(k.naziv, lang);
+    prev.after(b); prev = b;
+  });
+}
 document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
 document.getElementById("tb-explode").addEventListener("click", () => {
   exploded = !exploded;
@@ -431,7 +434,7 @@ function select(id) {
   else if (currentView === "all" && !exploded) setView(String(u.kat));
 }
 
-function floorName(k) { return t(["v_f0", "v_f1", "v_f2"][k], lang); }
+function floorName(k) { return t(KATOVI[k].naziv, lang); }
 
 function renderInfo() {
   const box = document.getElementById("unit-info");
@@ -447,6 +450,7 @@ function renderInfo() {
     <div class="meta">
       <div><span>${t("floor", lang)}</span><strong>${floorName(u.kat)}</strong></div>
       <div><span>${t("guests", lang)}</span><strong>${u.osoba ?? "—"}</strong></div>
+      <div><span>${t("side", lang)}</span><strong>${t(u.strana === "ulica" ? "side_street" : "side_sea", lang)}</strong></div>
       <div><span>${t("size", lang)}</span><strong>${u.m2 ? u.m2 + " m²" : "—"}</strong></div>
     </div>
     <a class="btn btn-ghost" href="${href("fotografije.html")}#jedinica-${u.id}">${t("unit_photos", lang)}</a>

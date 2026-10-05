@@ -11,6 +11,7 @@ export const EXTRA = {
     am_balcony: "Balkon ili terasa", am_cot: "Dječji krevetić (0–3 god.) besplatno na upit",
     am_promenade: "Šetnica uz more (2 km) ispod kuće", am_langs: "Domaćini govore hrvatski i engleski",
     am_beach: "Plaža udaljena 200 m", am_pets_ok: "Kućni ljubimci su dozvoljeni – samo nam javite koliko ih dolazi", am_sup: "2 SUP daske na raspolaganju", am_bikes: "2 bicikla na raspolaganju", am_laundry: "Zajednička perilica rublja sa svim potrepštinama", am_micro: "Mikrovalna pećnica", cat_active: "Za aktivan odmor", amen_title: "Što vas čeka", amen_pets: "Kućni ljubimci dozvoljeni",
+    v_half: "Polukat", v_f3: "3. kat", side: "Strana", side_sea: "Prema moru", side_street: "Prema ulici",
   },
   en: {
     desc_A: "Apartment with a separate bedroom with a double bed and a living room with a sofa bed. Equipped kitchen, bathroom with shower and air conditioning.",
@@ -22,6 +23,7 @@ export const EXTRA = {
     am_balcony: "Balcony or terrace", am_cot: "Baby cot (0–3 yrs) free on request",
     am_promenade: "2 km seaside promenade below the house", am_langs: "Hosts speak Croatian and English",
     am_beach: "Beach 200 m away", am_pets_ok: "Pets are welcome – just let us know how many are coming", am_sup: "2 SUP boards available", am_bikes: "2 bicycles available", am_laundry: "Shared washing machine with all supplies", am_micro: "Microwave", cat_active: "For an active holiday", amen_title: "What awaits you", amen_pets: "Pets welcome",
+    v_half: "Half-floor", v_f3: "3rd floor", side: "Faces", side_sea: "Sea side", side_street: "Street side",
   },
   de: {
     desc_A: "Apartment mit separatem Schlafzimmer mit Doppelbett und Wohnzimmer mit Schlafsofa. Ausgestattete Küche, Bad mit Dusche und Klimaanlage.",
@@ -33,6 +35,7 @@ export const EXTRA = {
     am_balcony: "Balkon oder Terrasse", am_cot: "Babybett (0–3 J.) kostenlos auf Anfrage",
     am_promenade: "2 km Strandpromenade unterhalb des Hauses", am_langs: "Gastgeber sprechen Kroatisch und Englisch",
     am_beach: "Strand 200 m entfernt", am_pets_ok: "Haustiere sind willkommen – teilen Sie uns nur mit, wie viele mitkommen", am_sup: "2 SUP-Boards zur Verfügung", am_bikes: "2 Fahrräder zur Verfügung", am_laundry: "Gemeinsame Waschmaschine mit allem Zubehör", am_micro: "Mikrowelle", cat_active: "Für einen aktiven Urlaub", amen_title: "Was Sie erwartet", amen_pets: "Haustiere willkommen",
+    v_half: "Zwischengeschoss", v_f3: "3. Stock", side: "Lage", side_sea: "Meerseite", side_street: "Straßenseite",
   },
   it: {
     desc_A: "Appartamento con camera da letto separata con letto matrimoniale e soggiorno con divano letto. Cucina attrezzata, bagno con doccia e aria condizionata.",
@@ -44,6 +47,7 @@ export const EXTRA = {
     am_balcony: "Balcone o terrazza", am_cot: "Culla (0–3 anni) gratuita su richiesta",
     am_promenade: "Lungomare di 2 km sotto la casa", am_langs: "I padroni di casa parlano croato e inglese",
     am_beach: "Spiaggia a 200 m", am_pets_ok: "Animali ammessi – fateci solo sapere quanti ne portate", am_sup: "2 tavole SUP a disposizione", am_bikes: "2 biciclette a disposizione", am_laundry: "Lavatrice in comune con tutto il necessario", am_micro: "Microonde", cat_active: "Per una vacanza attiva", amen_title: "Cosa vi aspetta", amen_pets: "Animali ammessi",
+    v_half: "Mezzanino", v_f3: "3° piano", side: "Lato", side_sea: "Lato mare", side_street: "Lato strada",
   },
   sl: {
     desc_A: "Apartma z ločeno spalnico z zakonsko posteljo in dnevno sobo z raztegljivim kavčem. Opremljena kuhinja, kopalnica s prho in klimatska naprava.",
@@ -55,6 +59,7 @@ export const EXTRA = {
     am_balcony: "Balkon ali terasa", am_cot: "Otroška posteljica (0–3 leta) brezplačno na povpraševanje",
     am_promenade: "2 km obmorske promenade pod hišo", am_langs: "Gostitelji govorijo hrvaško in angleško",
     am_beach: "Plaža oddaljena 200 m", am_pets_ok: "Hišni ljubljenčki so dobrodošli – le sporočite nam, koliko jih pride", am_sup: "2 SUP deski na voljo", am_bikes: "2 kolesi na voljo", am_laundry: "Skupni pralni stroj z vsemi potrebščinami", am_micro: "Mikrovalovna pečica", cat_active: "Za aktiven oddih", amen_title: "Kaj vas čaka", amen_pets: "Ljubljenčki dobrodošli",
+    v_half: "Polnadstropje", v_f3: "3. nadstropje", side: "Stran", side_sea: "Proti morju", side_street: "Proti ulici",
   },
   pl: {
     desc_A: "Apartament z osobną sypialnią z łóżkiem małżeńskim i salonem z rozkładaną sofą. Wyposażona kuchnia, łazienka z prysznicem i klimatyzacja.",
@@ -66,6 +71,7 @@ export const EXTRA = {
     am_balcony: "Balkon lub taras", am_cot: "Łóżeczko (0–3 lata) bezpłatnie na życzenie",
     am_promenade: "2 km promenady nadmorskiej poniżej domu", am_langs: "Gospodarze mówią po chorwacku i angielsku",
     am_beach: "Plaża w odległości 200 m", am_pets_ok: "Zwierzęta są mile widziane – wystarczy nas poinformować, ile ich przyjedzie", am_sup: "2 deski SUP do dyspozycji", am_bikes: "2 rowery do dyspozycji", am_laundry: "Wspólna pralka ze wszystkimi środkami", am_micro: "Kuchenka mikrofalowa", cat_active: "Na aktywny wypoczynek", amen_title: "Co na Was czeka", amen_pets: "Zwierzęta mile widziane",
+    v_half: "Półpiętro", v_f3: "3. piętro", side: "Strona", side_sea: "Od strony morza", side_street: "Od strony ulicy",
   },
   cs: {
     desc_A: "Apartmán se samostatnou ložnicí s manželskou postelí a obývacím pokojem s rozkládací pohovkou. Vybavená kuchyň, koupelna se sprchou a klimatizace.",
@@ -77,6 +83,7 @@ export const EXTRA = {
     am_balcony: "Balkon nebo terasa", am_cot: "Dětská postýlka (0–3 roky) zdarma na vyžádání",
     am_promenade: "2 km přímořské promenády pod domem", am_langs: "Hostitelé mluví chorvatsky a anglicky",
     am_beach: "Pláž vzdálená 200 m", am_pets_ok: "Domácí mazlíčci jsou vítáni – dejte nám jen vědět, kolik jich přijede", am_sup: "2 paddleboardy k dispozici", am_bikes: "2 kola k dispozici", am_laundry: "Společná pračka se vším potřebným", am_micro: "Mikrovlnná trouba", cat_active: "Pro aktivní dovolenou", amen_title: "Co na vás čeká", amen_pets: "Mazlíčci vítáni",
+    v_half: "Mezipatro", v_f3: "3. patro", side: "Strana", side_sea: "Směrem k moři", side_street: "Směrem do ulice",
   },
   sk: {
     desc_A: "Apartmán so samostatnou spálňou s manželskou posteľou a obývačkou s rozkladacou pohovkou. Vybavená kuchyňa, kúpeľňa so sprchou a klimatizácia.",
@@ -88,6 +95,7 @@ export const EXTRA = {
     am_balcony: "Balkón alebo terasa", am_cot: "Detská postieľka (0–3 roky) zadarmo na požiadanie",
     am_promenade: "2 km prímorskej promenády pod domom", am_langs: "Hostitelia hovoria po chorvátsky a anglicky",
     am_beach: "Pláž vzdialená 200 m", am_pets_ok: "Domáce zvieratá sú vítané – dajte nám len vedieť, koľko ich príde", am_sup: "2 paddleboardy k dispozícii", am_bikes: "2 bicykle k dispozícii", am_laundry: "Spoločná práčka so všetkým potrebným", am_micro: "Mikrovlnná rúra", cat_active: "Na aktívnu dovolenku", amen_title: "Čo na vás čaká", amen_pets: "Zvieratá vítané",
+    v_half: "Medziposchodie", v_f3: "3. poschodie", side: "Strana", side_sea: "Smerom k moru", side_street: "Smerom do ulice",
   },
 };
 

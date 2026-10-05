@@ -18,30 +18,40 @@ export const LOKACIJA = {
 
 // ---------------------------------------------------------------------
 //  JEDINICE
-//  kat: 0 = prizemlje, 1 = 1. kat, 2 = 2. kat
+//  kat: indeks u KATOVI (0 = prizemlje, 1 = 1. kat, 2 = polukat, 3 = 2. kat, 4 = 3. kat)
+//  strana: "more" ili "ulica" (more = zapad, ulica = istok)
 //  tlocrt: pravokutnik u metrima unutar kuće (x: zapad -> istok, z: sjever -> jug)
 //          kuća ide od x -6.5 do 6.5 i od z -5.25 do 5.25
 //  tip: A = spavaća soba + kauč na razvlačenje, B = spavaća soba + 2 kauča, S = studio (opisi su u js/i18n-sadrzaji.js)
 //  osoba / m2: null = još nije upisano
-//  !!! RASPORED JE PRIVREMEN — ispravit ćemo ga prema stvarnom stanju !!!
+//  Raspored je shematski (kat i strana su točni, točni tlocrti nisu poznati)
 // ---------------------------------------------------------------------
+export const KATOVI = [
+  { naziv: "v_f0", gosti: false },   // prizemlje (nije za goste)
+  { naziv: "v_f1" },                 // 1. kat
+  { naziv: "v_half" },               // polukat
+  { naziv: "v_f2" },                 // 2. kat
+  { naziv: "v_f3" },                 // 3. kat
+];
+
 export const JEDINICE = [
-  { id: 1, tip: "A", kat: 0, boja: "#d9825b", osoba: null, m2: null, tlocrt: { x0: -6.5, x1: -1, z0: -5.25, z1: 0 } },
-  { id: 2, tip: "S", kat: 0, boja: "#7f9a4a", osoba: null, m2: null, tlocrt: { x0: -6.5, x1: -1, z0: 0, z1: 5.25 } },
-  { id: 3, tip: "B", kat: 1, boja: "#3f8fae", osoba: null, m2: null, tlocrt: { x0: -6.5, x1: -1, z0: -5.25, z1: 0 } },
-  { id: 4, tip: "A", kat: 1, boja: "#e2b04a", osoba: null, m2: null, tlocrt: { x0: -6.5, x1: -1, z0: 0, z1: 5.25 } },
-  { id: 5, tip: "A", kat: 1, boja: "#a86a9c", osoba: null, m2: null, tlocrt: { x0: -1, x1: 4.5, z0: -5.25, z1: 5.25 } },
-  { id: 6, tip: "S", kat: 2, boja: "#c95454", osoba: null, m2: null, tlocrt: { x0: -6.5, x1: -1, z0: -5.25, z1: 0 } },
-  { id: 7, tip: "B", kat: 2, boja: "#4f9d8a", osoba: null, m2: null, tlocrt: { x0: -6.5, x1: -1, z0: 0, z1: 5.25 } },
-  { id: 8, tip: "A", kat: 2, boja: "#6c7fc4", osoba: null, m2: null, tlocrt: { x0: -1, x1: 4.5, z0: -5.25, z1: 5.25 } },
+  { id: 1, tip: "A", kat: 1, strana: "more",  boja: "#d9825b", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -3.5, z1: 0.875 } },
+  { id: 2, tip: "S", kat: 1, strana: "more",  boja: "#7f9a4a", osoba: 2, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.875, z1: 5.25 } },
+  { id: 3, tip: "B", kat: 2, strana: "ulica", boja: "#3f8fae", osoba: 4, m2: null, tlocrt: { x0: 0, x1: 6.5, z0: -3.5, z1: 5.25 } },
+  { id: 4, tip: "A", kat: 2, strana: "more",  boja: "#e2b04a", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 0, z0: -3.5, z1: 5.25 } },
+  { id: 5, tip: "A", kat: 3, strana: "more",  boja: "#a86a9c", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -3.5, z1: 0.875 } },
+  { id: 6, tip: "S", kat: 3, strana: "more",  boja: "#c95454", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.875, z1: 5.25 } },
+  { id: 7, tip: "B", kat: 4, strana: "ulica", boja: "#4f9d8a", osoba: 4, m2: null, tlocrt: { x0: 0, x1: 6.5, z0: -3.5, z1: 5.25 } },
+  { id: 8, tip: "A", kat: 4, strana: "more",  boja: "#6c7fc4", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 0, z0: -3.5, z1: 5.25 } },
 ];
 
 // Zajednički / ostali prostori po katovima (nisu apartmani)
 export const OSTALO = [
-  { kat: 0, vrsta: "hodnik", tlocrt: { x0: 4.5, x1: 6.5, z0: -5.25, z1: 5.25 } },
-  { kat: 0, vrsta: "ostalo", tlocrt: { x0: -1, x1: 4.5, z0: -5.25, z1: 5.25 } },
-  { kat: 1, vrsta: "hodnik", tlocrt: { x0: 4.5, x1: 6.5, z0: -5.25, z1: 5.25 } },
-  { kat: 2, vrsta: "hodnik", tlocrt: { x0: 4.5, x1: 6.5, z0: -5.25, z1: 5.25 } },
+  { kat: 0, vrsta: "ostalo", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: 5.25 } },
+  { kat: 1, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
+  { kat: 2, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
+  { kat: 3, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
+  { kat: 4, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
 ];
 
 // ---------------------------------------------------------------------
