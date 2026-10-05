@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kuća u 3D – Apartmani Dorana</title>
+  <meta name="description" content="Interaktivni 3D prikaz kuće Apartmani Dorana u Vrsima: pogledajte gdje se nalazi svaki od 8 apartmana i glavni ulaz za goste.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    { "imports": { "three": "./js/vendor/three.module.min.js" } }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <div class="wrap">
+    <div class="page-head">
+      <h1 data-i18n="h3d_title"></h1>
+      <p data-i18n="h3d_p"></p>
+    </div>
+
+    <div class="viewer-layout">
+      <div class="viewer" id="viewer">
+        <div class="viewer-loading" id="viewer-loading" data-i18n="loading"></div>
+        <div class="viewer-toolbar" id="toolbar">
+          <button class="tb-btn on" data-view="all" data-i18n="v_all"></button>
+          <button class="tb-btn" data-view="0" data-i18n="v_f0"></button>
+          <button class="tb-btn" data-view="1" data-i18n="v_f1"></button>
+          <button class="tb-btn" data-view="2" data-i18n="v_f2"></button>
+          <span class="tb-sep"></span>
+          <button class="tb-btn" id="tb-explode" data-i18n="v_explode"></button>
+          <button class="tb-btn on" id="tb-roof" data-i18n="v_roof"></button>
+          <button class="tb-btn" id="tb-reset" data-i18n="v_reset"></button>
+        </div>
+        <div class="viewer-hint" data-i18n="h3d_hint"></div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="card">
+          <h3 data-i18n="units_list"></h3>
+          <ul class="unit-list" id="unit-list"></ul>
+        </div>
+        <div class="card unit-info" id="unit-info">
+          <p data-i18n="pick_unit"></p>
+        </div>
+        <p class="note" data-i18n="draft_note"></p>
+      </aside>
+    </div>
+  </div>
+
+  <footer id="site-footer"></footer>
+
+  <script type="module" src="js/kuca3d.js"></script>
+</body>
+</html>

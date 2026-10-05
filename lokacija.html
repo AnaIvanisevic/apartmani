@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lokacija i kontakt – Apartmani Dorana</title>
+  <meta name="description" content="Apartmani Dorana, don Ive Prodana 17, Vrsi. Plaže, restorani i izleti u blizini. Pošaljite upit izravno domaćici.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <div class="wrap">
+    <div class="page-head">
+      <h1 data-i18n="loc_title"></h1>
+      <p data-i18n="loc_p"></p>
+    </div>
+
+    <div class="split" style="align-items:start">
+      <iframe class="map-frame" id="map" title="Map" loading="lazy"></iframe>
+      <div class="card">
+        <h3 data-i18n="loc_address"></h3>
+        <p id="address"></p>
+        <div class="btn-row">
+          <a class="btn btn-primary" id="directions" target="_blank" rel="noopener" data-i18n="loc_directions"></a>
+        </div>
+        <h3 style="margin-top:28px" data-i18n="contact_direct"></h3>
+        <p id="direct"></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap grid-3">
+      <div class="card"><h3 data-i18n="loc_beaches"></h3>
+        <ul class="dist-list">
+          <li><span>Punta Velebit</span><span>250 m</span></li>
+          <li><span>Mulo</span><span>450 m</span></li>
+          <li><span>Školjić</span><span>1,2 km</span></li>
+          <li><span>Zukve</span><span>1,5 km</span></li>
+          <li><span>Jasenovo</span><span>2,6 km</span></li>
+        </ul></div>
+      <div class="card"><h3 data-i18n="loc_food"></h3>
+        <ul class="dist-list">
+          <li><span>Capo</span><span>250 m</span></li>
+          <li><span>Deli</span><span>500 m</span></li>
+          <li><span>Castello Vrsi</span><span>650 m</span></li>
+          <li><span data-i18n="loc_market"></span><span>500 m</span></li>
+        </ul></div>
+      <div class="card"><h3 data-i18n="loc_sights"></h3>
+        <ul class="dist-list">
+          <li><span>Sv. Mihovil</span><span>2,6 km</span></li>
+          <li><span>Nin</span><span>5 km</span></li>
+          <li><span data-i18n="loc_airport"></span><span>23 km</span></li>
+        </ul></div>
+    </div>
+  </section>
+
+  <section class="section alt" id="upit">
+    <div class="wrap" style="max-width:760px">
+      <h2 data-i18n="form_title"></h2>
+      <p class="lead" data-i18n="form_p"></p>
+      <form class="form card" id="form" onsubmit="return false">
+        <label class="full"><span data-i18n="f_name"></span><input name="name" autocomplete="name" required></label>
+        <label><span data-i18n="f_arrive"></span><input type="date" name="arrive"></label>
+        <label><span data-i18n="f_depart"></span><input type="date" name="depart"></label>
+        <label><span data-i18n="f_adults"></span><input type="number" name="adults" min="1" max="10" value="2"></label>
+        <label><span data-i18n="f_kids"></span><input type="number" name="kids" min="0" max="10" value="0"></label>
+        <label class="full"><span data-i18n="f_unit"></span><select name="unit" id="unit-select"></select></label>
+        <label class="full"><span data-i18n="f_msg"></span><textarea name="msg" rows="4"></textarea></label>
+        <div class="full btn-row">
+          <button class="btn btn-wa" type="button" id="send-wa" data-i18n="f_send_wa"></button>
+          <button class="btn btn-primary" type="button" id="send-mail" data-i18n="f_send_mail"></button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <script type="module" src="js/kontakt.js"></script>
+</body>
+</html>

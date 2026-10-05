@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fotografije – Apartmani Dorana</title>
+  <meta name="description" content="Fotografije apartmana, kuće, vrta i okolice – Apartmani Dorana, Vrsi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <div class="wrap">
+    <div class="page-head">
+      <h1 data-i18n="ph_title"></h1>
+      <p data-i18n="ph_p"></p>
+    </div>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="gallery" id="gallery"></div>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lb-btn lb-close" id="lb-close" aria-label="Close">×</button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous">‹</button>
+    <img id="lb-img" alt="">
+    <button class="lb-btn lb-next" id="lb-next" aria-label="Next">›</button>
+    <div class="lb-count" id="lb-count"></div>
+  </div>
+
+  <footer id="site-footer"></footer>
+  <script type="module" src="js/galerija.js"></script>
+</body>
+</html>
