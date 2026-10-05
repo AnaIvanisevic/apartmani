@@ -27,7 +27,7 @@ export const LOKACIJA = {
 //  Raspored je shematski (kat i strana su točni, točni tlocrti nisu poznati)
 // ---------------------------------------------------------------------
 export const KATOVI = [
-  { naziv: "v_f0", gosti: false },   // prizemlje (nije za goste)
+  { naziv: "v_f0", gosti: false },   // prizemlje – privatno, prikazuje se samo kao zatvoreni zid
   { naziv: "v_f1" },                 // 1. kat
   { naziv: "v_half" },               // polukat
   { naziv: "v_f2" },                 // 2. kat
@@ -40,14 +40,13 @@ export const JEDINICE = [
   { id: 3, tip: "B", kat: 2, strana: "ulica", boja: "#3f8fae", osoba: 4, m2: null, tlocrt: { x0: 0, x1: 6.5, z0: -3.5, z1: 5.25 } },
   { id: 4, tip: "A", kat: 2, strana: "more",  boja: "#e2b04a", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 0, z0: -3.5, z1: 5.25 } },
   { id: 5, tip: "A", kat: 3, strana: "more",  boja: "#a86a9c", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: -3.5, z1: 0.875 } },
-  { id: 6, tip: "S", kat: 3, strana: "more",  boja: "#c95454", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.875, z1: 5.25 } },
+  { id: 6, tip: "S", kat: 3, strana: "more",  boja: "#c95454", osoba: 2, m2: null, tlocrt: { x0: -6.5, x1: 6.5, z0: 0.875, z1: 5.25 } },
   { id: 7, tip: "B", kat: 4, strana: "ulica", boja: "#4f9d8a", osoba: 4, m2: null, tlocrt: { x0: 0, x1: 6.5, z0: -3.5, z1: 5.25 } },
   { id: 8, tip: "A", kat: 4, strana: "more",  boja: "#6c7fc4", osoba: 4, m2: null, tlocrt: { x0: -6.5, x1: 0, z0: -3.5, z1: 5.25 } },
 ];
 
 // Zajednički / ostali prostori po katovima (nisu apartmani)
 export const OSTALO = [
-  { kat: 0, vrsta: "ostalo", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: 5.25 } },
   { kat: 1, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
   { kat: 2, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },
   { kat: 3, vrsta: "hodnik", tlocrt: { x0: -6.5, x1: 6.5, z0: -5.25, z1: -3.5 } },

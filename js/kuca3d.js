@@ -144,7 +144,7 @@ road.position.set(24, 0.03, 0);
 road.receiveShadow = true;
 scene.add(road);
 const streetLbl = tLabel("lbl_street", "lbl-place");
-streetLbl.position.set(24, 0.4, -14);
+streetLbl.position.set(22, 0.4, -18);
 scene.add(streetLbl);
 
 // more (zapad, ~200 m) – plavi pojas na rubu
@@ -216,7 +216,10 @@ for (let f = 0; f < N_FLOORS; f++) {
 
   // vanjski zidovi (prozirni da se vide jedinice)
   const wallH = FLOOR_H - SLAB;
-  const shell = new THREE.Mesh(new THREE.BoxGeometry(W, wallH, D), wallMat);
+  const privatno = KATOVI[f].gosti === false;
+  const shell = new THREE.Mesh(new THREE.BoxGeometry(W, wallH, D),
+    privatno ? new THREE.MeshStandardMaterial({ color: COL.wall, roughness: 0.9 }) : wallMat);
+  if (privatno) { shell.castShadow = true; shell.receiveShadow = true; }
   shell.position.y = SLAB + wallH / 2;
   shell.renderOrder = 2;
   g.add(shell);
@@ -234,10 +237,6 @@ for (let f = 0; f < N_FLOORS; f++) {
     const r3 = r2.clone(); r3.position.z = -(D - 1.5) / 2; rail.add(r3);
     rail.children.forEach((m) => { m.material = m.material.clone(); m.material.transparent = true; m.material.opacity = 0.85; });
     g.add(rail);
-  } else {
-    const ter = box(W - 1, 0.12, 3, 0xd9c7a6);
-    ter.position.set(-0.5, -PLINTH + 0.06, HZ + 1.6);
-    g.add(ter);
   }
 
   // zajednički prostori
