@@ -1,6 +1,6 @@
-import { lang as initialLang } from "./common.js?v=202610051517";
-import { t } from "./i18n.js?v=202610051517";
-import { FOTOGRAFIJE, JEDINICE } from "./podaci.js?v=202610051517";
+import { lang as initialLang } from "./common.js?v=202610051548";
+import { t } from "./i18n.js?v=202610051548";
+import { FOTOGRAFIJE, JEDINICE } from "./podaci.js?v=202610051548";
 
 let lang = initialLang;
 const MAPE = ["zajednicko", ...JEDINICE.map((u) => `jedinica-${u.id}`)];
@@ -43,7 +43,7 @@ function renderGallery() {
   if (active.startsWith("jedinica-")) {
     const u = JEDINICE.find((x) => `jedinica-${x.id}` === active);
     html = `<div class="unit-intro"><h2>${folderName(active)}</h2><p>${t("desc_" + u.tip, lang)}</p>
-      <a class="btn btn-ghost" href="kuca-3d.html?lang=${lang}#jedinica-${u.id}">${t("nav_3d", lang)}</a>
+      <a class="btn btn-ghost" href="apartman.html?lang=${lang}&j=${u.id}">${t("unit_open", lang)}</a>
       <a class="btn btn-ghost" href="dostupnost.html?lang=${lang}#jedinica-${u.id}">${t("btn_avail", lang)}</a>
       <a class="btn btn-primary" href="upit.html?lang=${lang}&j=${u.id}">${t("unit_inquiry", lang)}</a></div>` + html;
   }

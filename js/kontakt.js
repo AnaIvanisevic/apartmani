@@ -1,6 +1,6 @@
-import { lang as initialLang } from "./common.js?v=202610051517";
-import { t } from "./i18n.js?v=202610051517";
-import { KONTAKT, LOKACIJA, JEDINICE } from "./podaci.js?v=202610051517";
+import { lang as initialLang } from "./common.js?v=202610051548";
+import { t } from "./i18n.js?v=202610051548";
+import { KONTAKT, LOKACIJA, JEDINICE } from "./podaci.js?v=202610051548";
 
 let lang = initialLang;
 const { lat, lng } = LOKACIJA;

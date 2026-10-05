@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=202610051517">
+  <link rel="stylesheet" href="css/style.css?v=202610051548">
   <script type="importmap">
-    { "imports": { "three": "./js/vendor/three.module.min.js?v=202610051517" } }
+    { "imports": { "three": "./js/vendor/three.module.min.js?v=202610051548" } }
   </script>
   <!-- SEO -->
   <link rel="canonical" href="https://anaivanisevic.github.io/apartmani/kuca-3d.html">
@@ -63,13 +63,25 @@
         <div class="card unit-info" id="unit-info">
           <p data-i18n="pick_unit"></p>
         </div>
-        <p class="note" data-i18n="draft_note"></p>
       </aside>
     </div>
   </div>
 
+  <div class="wrap" style="padding-bottom:64px">
+    <h2 class="section-h" data-i18n="layout_title"></h2>
+    <p class="lead" data-i18n="layout_p"></p>
+    <div id="layout"></div>
+  </div>
+
   <footer id="site-footer"></footer>
 
-  <script type="module" src="js/kuca3d.js?v=202610051517"></script>
+  <script type="module">
+    import { lang as l0 } from "./js/common.js?v=202610051548";
+    import { layoutHTML } from "./js/kartice.js?v=202610051548";
+    let lg = l0;
+    const r = () => { document.getElementById("layout").innerHTML = layoutHTML(lg); };
+    r(); document.addEventListener("langchange", (e) => { lg = e.detail; r(); });
+  </script>
+  <script type="module" src="js/kuca3d.js?v=202610051548"></script>
 </body>
 </html>

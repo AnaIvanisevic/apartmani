@@ -1,10 +1,11 @@
-import { JEZICI, getLang, setLang, applyI18n, t } from "./i18n.js?v=202610051517";
-import { KONTAKT, LOKACIJA } from "./podaci.js?v=202610051517";
+import { JEZICI, getLang, setLang, applyI18n, t } from "./i18n.js?v=202610051548";
+import { KONTAKT, LOKACIJA } from "./podaci.js?v=202610051548";
 
 export let lang = getLang();
 
 const PAGES = [
   ["index.html", "nav_home"],
+  ["apartmani.html", "nav_units"],
   ["kuca-3d.html", "nav_3d"],
   ["fotografije.html", "nav_photos"],
   ["sadrzaji.html", "nav_amen"],
@@ -21,7 +22,8 @@ const LOGO = `<svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
 </svg>`;
 
 function current() {
-  const p = location.pathname.split("/").pop() || "index.html";
+  let p = location.pathname.split("/").pop() || "index.html";
+  if (p === "apartman.html") p = "apartmani.html";
   return p === "" ? "index.html" : p;
 }
 

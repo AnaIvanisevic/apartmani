@@ -1,9 +1,9 @@
 import * as THREE from "three";
-import { OrbitControls } from "./vendor/OrbitControls.js?v=202610051517";
-import { CSS2DRenderer, CSS2DObject } from "./vendor/CSS2DRenderer.js?v=202610051517";
-import { lang as initialLang, href } from "./common.js?v=202610051517";
-import { t } from "./i18n.js?v=202610051517";
-import { JEDINICE, OSTALO, KATOVI } from "./podaci.js?v=202610051517";
+import { OrbitControls } from "./vendor/OrbitControls.js?v=202610051548";
+import { CSS2DRenderer, CSS2DObject } from "./vendor/CSS2DRenderer.js?v=202610051548";
+import { lang as initialLang, href } from "./common.js?v=202610051548";
+import { t } from "./i18n.js?v=202610051548";
+import { JEDINICE, OSTALO, KATOVI } from "./podaci.js?v=202610051548";
 
 let lang = initialLang;
 
@@ -30,13 +30,22 @@ const loadingEl = document.getElementById("viewer-loading");
 function webglOK() {
   try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch (e) { return false; }
 }
-if (!webglOK()) {
+function fallback() {
+  host.classList.add("no3d");
   loadingEl.dataset.i18n = "no_webgl";
   loadingEl.textContent = t("no_webgl", lang);
+  document.getElementById("toolbar").remove();
+  const list = () => {
+    document.getElementById("unit-list").innerHTML = JEDINICE.map((u) =>
+      `<li><a class="ul-link" href="apartman.html?lang=${lang}&j=${u.id}"><span class="swatch" style="background:${u.boja}"></span>${t("unit", lang)} ${u.id}</a></li>`).join("");
+  };
+  list();
+  document.addEventListener("langchange", (e) => { lang = e.detail; list(); });
   throw new Error("WebGL not available");
 }
-
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+let renderer;
+if (!webglOK()) fallback();
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { fallback(); }
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -472,6 +481,7 @@ function renderInfo() {
       <div><span>${t("size", lang)}</span><strong>${u.m2 ? u.m2 + " m²" : "—"}</strong></div>
     </div>
     <a class="btn btn-ghost" href="${href("fotografije.html")}#jedinica-${u.id}">${t("unit_photos", lang)}</a>
+    <a class="btn btn-ghost" href="apartman.html?lang=${lang}&j=${u.id}">${t("unit_open", lang)}</a>
     <a class="btn btn-ghost" href="${href("dostupnost.html")}#jedinica-${u.id}">${t("btn_avail", lang)}</a>
     <a class="btn btn-primary" href="${href("upit.html")}&j=${u.id}">${t("unit_inquiry", lang)}</a>`;
 }

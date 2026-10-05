@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Provjeri dostupnost – Apartmani Dorana</title>
-  <meta name="description" content="Kalendar slobodnih termina za svih 8 apartmana Apartmani Dorana u Vrsima.">
+  <meta name="description" content="Provjerite slobodne apartmane u Apartmanima Dorana u Vrsima za svoj termin i broj osoba.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=202610051517">
+  <link rel="stylesheet" href="css/style.css?v=202610051548">
   <!-- SEO -->
   <link rel="canonical" href="https://anaivanisevic.github.io/apartmani/dostupnost.html">
   <link rel="alternate" hreflang="hr" href="https://anaivanisevic.github.io/apartmani/dostupnost.html?lang=hr">
@@ -19,15 +19,13 @@
   <link rel="alternate" hreflang="pl" href="https://anaivanisevic.github.io/apartmani/dostupnost.html?lang=pl">
   <link rel="alternate" hreflang="cs" href="https://anaivanisevic.github.io/apartmani/dostupnost.html?lang=cs">
   <link rel="alternate" hreflang="sk" href="https://anaivanisevic.github.io/apartmani/dostupnost.html?lang=sk">
-  <link rel="alternate" hreflang="x-default" href="https://anaivanisevic.github.io/apartmani/dostupnost.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Apartmani Dorana">
   <meta property="og:title" content="Provjeri dostupnost – Apartmani Dorana">
-  <meta property="og:description" content="Kalendar slobodnih termina za svih 8 apartmana Apartmani Dorana u Vrsima.">
+  <meta property="og:description" content="Provjerite slobodne apartmane u Apartmanima Dorana u Vrsima za svoj termin i broj osoba.">
   <meta property="og:url" content="https://anaivanisevic.github.io/apartmani/dostupnost.html">
   <meta property="og:image" content="https://anaivanisevic.github.io/apartmani/fotografije/zajednicko/zajednicko-10.jpg">
-  <meta name="twitter:card" content="summary_large_image">
   <!-- /SEO -->
 </head>
 <body data-title="nav_avail">
@@ -35,26 +33,24 @@
   <div class="wrap">
     <div class="page-head">
       <h1 data-i18n="av_title"></h1>
-      <p data-i18n="av_p"></p>
+      <p data-i18n="s_title"></p>
     </div>
+    <form class="search card" id="search" onsubmit="return false">
+      <label><span data-i18n="f_arrive"></span><input type="date" name="od" required></label>
+      <label><span data-i18n="f_depart"></span><input type="date" name="do" required></label>
+      <label><span data-i18n="s_guests"></span><select name="g"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+      <button class="btn btn-primary" type="submit" data-i18n="s_btn"></button>
+    </form>
+    <div id="results"></div>
+
+    <h2 class="section-h" data-i18n="s_by_unit"></h2>
     <div class="tabs" id="av-tabs"></div>
     <div class="card av-card">
       <div id="av-unit" class="av-unit"></div>
-      <div class="av-nav">
-        <button class="lb-btn av-arrow" id="av-prev" aria-label="Previous">‹</button>
-        <div class="av-legend">
-          <span><i class="lg free"></i><span data-i18n="av_free"></span></span>
-          <span><i class="lg busy"></i><span data-i18n="av_busy"></span></span>
-          <span><i class="lg sel"></i><span data-i18n="av_sel"></span></span>
-        </div>
-        <button class="lb-btn av-arrow" id="av-next" aria-label="Next">›</button>
-      </div>
-      <div class="av-cal" id="av-cal"></div>
-      <div class="av-sel" id="av-sel"></div>
-      <p class="av-updated" id="av-updated"></p>
+      <div id="av-calendar"></div>
     </div>
   </div>
   <footer id="site-footer"></footer>
-  <script type="module" src="js/dostupnost.js?v=202610051517"></script>
+  <script type="module" src="js/dostupnost.js?v=202610051548"></script>
 </body>
 </html>
