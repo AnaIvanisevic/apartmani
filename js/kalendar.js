@@ -1,7 +1,7 @@
 // Kalendar zauzetosti jednog apartmana (koristi se na stranicama Dostupnost i Apartman)
-import { t } from "./i18n.js?v=202610061139";
-import { AZURIRANO } from "./zauzetost.js?v=202610061139";
-import { key, parse, today, nights, fmt, busyNights } from "./zauzetost-util.js?v=202610061139";
+import { t } from "./i18n.js?v=202610061551";
+import { AZURIRANO } from "./zauzetost.js?v=202610061551";
+import { key, parse, today, nights, fmt, busyNights, lastUpdated } from "./zauzetost-util.js?v=202610061551";
 
 export function mountCalendar(root, opts) {
   let unit = opts.unit, lang = opts.lang;
@@ -88,7 +88,7 @@ export function mountCalendar(root, opts) {
     $(".av-sel").innerHTML = s;
     const c = root.querySelector(".av-clear");
     if (c) c.addEventListener("click", () => { arr = dep = null; msg = ""; renderCal(); renderSel(); });
-    $(".av-updated").textContent = `${t("av_updated", lang)}: ${fmt(AZURIRANO, lang)}`;
+    $(".av-updated").textContent = `${t("av_updated", lang)}: ${fmt(lastUpdated(AZURIRANO), lang)}`;
   }
 
   function render() { renderNav(); renderCal(); renderSel(); }

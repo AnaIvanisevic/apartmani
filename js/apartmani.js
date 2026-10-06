@@ -1,6 +1,6 @@
-import { lang as l0 } from "./common.js?v=202610061139";
-import { JEDINICE } from "./podaci.js?v=202610061139";
-import { unitCard, layoutHTML } from "./kartice.js?v=202610061139";
+import { lang as l0 } from "./common.js?v=202610061551";
+import { JEDINICE } from "./podaci.js?v=202610061551";
+import { unitCard, layoutHTML } from "./kartice.js?v=202610061551";
 
 let lang = l0;
 function render() {

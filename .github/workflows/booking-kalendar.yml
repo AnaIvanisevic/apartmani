@@ -1,33 +1,35 @@
-name: Osvježi ocjenu s Bookinga
+name: Povuci zauzetost s Bookinga
 
 on:
   schedule:
-    - cron: "17 5 */5 * *"   # svakih 5 dana u 05:17 UTC
+    - cron: "*/30 * * * *"   # svakih 30 minuta
   workflow_dispatch: {}      # ručno pokretanje s kartice Actions
 
 permissions:
   contents: write
 
+concurrency:
+  group: booking-kalendar
+  cancel-in-progress: false
+
 jobs:
-  ocjena:
+  kalendar:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Instaliraj preglednik
-        run: |
-          pip install playwright
-          python -m playwright install --with-deps chromium
-      - name: Dohvati ocjenu
-        run: python alati/booking_ocjena.py
+      - name: Povuci iCal kalendare
+        env:
+          BOOKING_ICAL: ${{ secrets.BOOKING_ICAL }}
+        run: python alati/booking_ical.py
       - name: Spremi promjenu
         run: |
           if git diff --quiet; then echo "Nema promjene."; exit 0; fi
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add js/ocjena.js
-          git commit -m "Automatski: ocjena s Bookinga"
+          git add js/zauzetost-booking.js
+          git commit -m "Automatski: zauzetost s Bookinga"
           git pull --rebase
           git push
