@@ -1,6 +1,6 @@
 // Kartice apartmana i statični raspored po katovima
-import { t } from "./i18n.js?v=202610051620";
-import { JEDINICE, KATOVI, FOTOGRAFIJE } from "./podaci.js?v=202610051620";
+import { t } from "./i18n.js?v=202610061139";
+import { JEDINICE, KATOVI, FOTOGRAFIJE } from "./podaci.js?v=202610061139";
 
 const OSOBE = {
   hr: { one: "osoba", few: "osobe", other: "osoba" }, en: { one: "guest", other: "guests" },
@@ -8,6 +8,18 @@ const OSOBE = {
   sl: { one: "oseba", two: "osebi", few: "osebe", other: "oseb" }, pl: { one: "osoba", few: "osoby", many: "osób", other: "osoby" },
   cs: { one: "osoba", few: "osoby", other: "osob" }, sk: { one: "osoba", few: "osoby", other: "osôb" },
 };
+const RECENZIJE = {
+  hr: { one: "recenzija", few: "recenzije", other: "recenzija" }, en: { one: "review", other: "reviews" },
+  de: { one: "Bewertung", other: "Bewertungen" }, it: { one: "recensione", other: "recensioni" },
+  sl: { one: "mnenje", two: "mnenji", few: "mnenja", other: "mnenj" }, pl: { one: "opinia", few: "opinie", many: "opinii", other: "opinii" },
+  cs: { one: "hodnocení", few: "hodnocení", other: "hodnocení" }, sk: { one: "hodnotenie", few: "hodnotenia", other: "hodnotení" },
+};
+export function ratingText(o, lang) {
+  const r = Number(o.ocjena).toLocaleString(lang, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const f = RECENZIJE[lang] || RECENZIJE.en;
+  const k = new Intl.PluralRules(lang).select(o.recenzija);
+  return `${t("rating_fmt", lang).replace("{r}", r)} · ${o.recenzija} ${f[k] || f.other}`;
+}
 export function persons(n, lang) {
   const f = OSOBE[lang] || OSOBE.en;
   const k = new Intl.PluralRules(lang).select(n);

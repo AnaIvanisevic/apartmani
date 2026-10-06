@@ -46,6 +46,7 @@ export const EXTRA = {
     up_next: "Sljedeći",
     per_unit_cal: "Odaberite datume u kalendaru ili pošaljite upit.",
     rating_link: "Pogledaj recenzije na Bookingu",
+    rating_fmt: "{r}/10 na Bookingu",
   },
   en: {
     desc_A: "Apartment with a separate bedroom with a double bed and a living room with a sofa bed. Equipped kitchen, bathroom with shower and air conditioning.",
@@ -92,6 +93,7 @@ export const EXTRA = {
     up_next: "Next",
     per_unit_cal: "Pick your dates in the calendar or send an inquiry.",
     rating_link: "See reviews on Booking.com",
+    rating_fmt: "{r}/10 on Booking.com",
   },
   de: {
     desc_A: "Apartment mit separatem Schlafzimmer mit Doppelbett und Wohnzimmer mit Schlafsofa. Ausgestattete Küche, Bad mit Dusche und Klimaanlage.",
@@ -138,6 +140,7 @@ export const EXTRA = {
     up_next: "Nächstes",
     per_unit_cal: "Wählen Sie Ihre Daten im Kalender oder senden Sie eine Anfrage.",
     rating_link: "Bewertungen auf Booking.com ansehen",
+    rating_fmt: "{r}/10 auf Booking.com",
   },
   it: {
     desc_A: "Appartamento con camera da letto separata con letto matrimoniale e soggiorno con divano letto. Cucina attrezzata, bagno con doccia e aria condizionata.",
@@ -184,6 +187,7 @@ export const EXTRA = {
     up_next: "Successivo",
     per_unit_cal: "Scegli le date nel calendario o invia una richiesta.",
     rating_link: "Vedi le recensioni su Booking.com",
+    rating_fmt: "{r}/10 su Booking.com",
   },
   sl: {
     desc_A: "Apartma z ločeno spalnico z zakonsko posteljo in dnevno sobo z raztegljivim kavčem. Opremljena kuhinja, kopalnica s prho in klimatska naprava.",
@@ -230,6 +234,7 @@ export const EXTRA = {
     up_next: "Naslednji",
     per_unit_cal: "Izberite datume v koledarju ali pošljite povpraševanje.",
     rating_link: "Mnenja na Booking.com",
+    rating_fmt: "{r}/10 na Booking.com",
   },
   pl: {
     desc_A: "Apartament z osobną sypialnią z łóżkiem małżeńskim i salonem z rozkładaną sofą. Wyposażona kuchnia, łazienka z prysznicem i klimatyzacja.",
@@ -276,6 +281,7 @@ export const EXTRA = {
     up_next: "Następny",
     per_unit_cal: "Wybierz daty w kalendarzu lub wyślij zapytanie.",
     rating_link: "Zobacz opinie na Booking.com",
+    rating_fmt: "{r}/10 na Booking.com",
   },
   cs: {
     desc_A: "Apartmán se samostatnou ložnicí s manželskou postelí a obývacím pokojem s rozkládací pohovkou. Vybavená kuchyň, koupelna se sprchou a klimatizace.",
@@ -322,6 +328,7 @@ export const EXTRA = {
     up_next: "Další",
     per_unit_cal: "Vyberte termín v kalendáři nebo pošlete poptávku.",
     rating_link: "Hodnocení na Booking.com",
+    rating_fmt: "{r}/10 na Booking.com",
   },
   sk: {
     desc_A: "Apartmán so samostatnou spálňou s manželskou posteľou a obývačkou s rozkladacou pohovkou. Vybavená kuchyňa, kúpeľňa so sprchou a klimatizácia.",
@@ -368,6 +375,7 @@ export const EXTRA = {
     up_next: "Ďalší",
     per_unit_cal: "Vyberte termín v kalendári alebo pošlite dopyt.",
     rating_link: "Hodnotenia na Booking.com",
+    rating_fmt: "{r}/10 na Booking.com",
   },
 };
 

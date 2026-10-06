@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=202610051620">
+  <link rel="stylesheet" href="css/style.css?v=202610061139">
   <!-- SEO -->
   <link rel="canonical" href="https://anaivanisevic.github.io/apartmani/">
   <link rel="alternate" hreflang="hr" href="https://anaivanisevic.github.io/apartmani/?lang=hr">
@@ -79,7 +79,7 @@
       <div class="highlight"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 16c2 0 2-1.5 4-1.5S8 16 10 16s2-1.5 4-1.5S16 16 18 16s2-1.5 4-1.5M2 20c2 0 2-1.5 4-1.5S8 20 10 20s2-1.5 4-1.5S16 20 18 20s2-1.5 4-1.5"/><circle cx="12" cy="7" r="3.5"/></svg></div><strong data-i18n="hl_sea"></strong></div>
       <div class="highlight"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></div><strong data-i18n="hl_parking"></strong></div>
       <div class="highlight"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></div><strong data-i18n="hl_units"></strong></div>
-      <a class="highlight hl-link" id="rating-link" target="_blank" rel="noopener"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg></div><span><strong data-i18n="hl_rating"></strong><small data-i18n="rating_link"></small></span></a>
+      <a class="highlight hl-link" id="rating-link" target="_blank" rel="noopener"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg></div><span><strong id="rating-text"></strong><small data-i18n="rating_link"></small></span></a>
     </div>
   </div>
 
@@ -142,7 +142,7 @@
 
   <script type="module">
     import "./js/common.js";
-    import { NASLOVNA_FOTO } from "./js/podaci.js?v=202610051620";
+    import { NASLOVNA_FOTO } from "./js/podaci.js?v=202610061139";
 
     const ICON = {
       wifi: '<path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/>',
@@ -159,15 +159,19 @@
                 ["tv","amen_tv"],["bbq","amen_bbq"],["sup","amen_sup"],["washer","amen_washer"]];
     document.getElementById("amenities").innerHTML = AM.map(([i,k]) =>
       `<div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[i]}</svg><span data-i18n="${k}"></span></div>`).join("");
-    const { applyI18n } = await import("./js/i18n.js?v=202610051620");
-    const { lang } = await import("./js/common.js?v=202610051620");
+    const { applyI18n } = await import("./js/i18n.js?v=202610061139");
+    const { lang } = await import("./js/common.js?v=202610061139");
     applyI18n(lang, document.getElementById("amenities"));
 
-    const { JEDINICE, BOOKING_URL } = await import("./js/podaci.js?v=202610051620");
-    const { unitCard } = await import("./js/kartice.js?v=202610051620");
-    const { lang: L0 } = await import("./js/common.js?v=202610051620");
+    const { JEDINICE, BOOKING_URL } = await import("./js/podaci.js?v=202610061139");
+    const { unitCard } = await import("./js/kartice.js?v=202610061139");
+    const { lang: L0 } = await import("./js/common.js?v=202610061139");
     let lg = L0;
     const renderUnits = () => { document.getElementById("unit-grid").innerHTML = JEDINICE.map((u) => unitCard(u, lg)).join(""); };
+    const { OCJENA } = await import("./js/ocjena.js?v=202610061139");
+    const { ratingText } = await import("./js/kartice.js?v=202610061139");
+    const renderRating = () => { document.getElementById("rating-text").textContent = ratingText(OCJENA, lg); };
+    renderRating();
     renderUnits();
     document.getElementById("rating-link").href = BOOKING_URL;
     const hs = document.getElementById("home-search");
@@ -175,7 +179,7 @@
     hs.od.min = tk; hs.do.min = tk;
     hs.od.addEventListener("change", () => { hs.do.min = hs.od.value || tk; });
     document.getElementById("hs-lang").value = lg;
-    document.addEventListener("langchange", (e) => { lg = e.detail; renderUnits(); document.getElementById("hs-lang").value = lg; });
+    document.addEventListener("langchange", (e) => { lg = e.detail; renderUnits(); renderRating(); document.getElementById("hs-lang").value = lg; });
 
     if (NASLOVNA_FOTO) {
       const h = document.getElementById("hero");
