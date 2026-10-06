@@ -48,6 +48,16 @@ def fetch_ranges(url):
                 ranges.append([a, b])
     return ranges
 
+def merge(ranges):
+    """Spaja preklapajuće i uzastopne termine (Rentlio šalje svaki dan zasebno)."""
+    out = []
+    for a, b in sorted(ranges):
+        if out and a <= out[-1][1]:
+            out[-1][1] = max(out[-1][1], b)
+        else:
+            out.append([a, b])
+    return out
+
 def main():
     links = parse_links(os.environ.get("BOOKING_ICAL", ""))
     if not links:
@@ -61,7 +71,7 @@ def main():
             rs = []
             for u in urls:
                 rs += fetch_ranges(u)
-            termini[unit] = sorted([r for r in rs if r[1] >= today])
+            termini[unit] = merge([r for r in rs if r[1] >= today])
             ok += 1
             print(f"Apartman {unit}: {len(termini[unit])} termina")
         except Exception as e:
