@@ -1,4 +1,4 @@
-name: Povuci zauzetost s Bookinga
+name: Povuci zauzetost iz Rentlija
 
 on:
   schedule:
